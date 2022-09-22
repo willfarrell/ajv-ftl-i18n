@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+
+srcDir=./locale/
+destDir=./locale/
+
+function buildFile {
+  echo ${1} ${2}
+  LOCALE=$(basename ${2%.js})
+  
+  ./cli.js ${1} --output ${2} --locale ${LOCALE}
+}
+
+function buildDir {
+  INPUT=$1
+  OUTPUT=$2
+  mkdir -p $OUTPUT
+  
+  for file in ${INPUT}*.ftl; do
+    file_output=${file%.ftl}.js
+    buildFile ${file} ${file_output/${INPUT}/${OUTPUT}}
+  done
+}
+
+buildDir ${srcDir} ${destDir}

@@ -1,0 +1,202 @@
+{
+  "$id": "http://example.org/schemas/default.json",
+  "type":"object",
+  "additionalProperties": false,
+  "propertyNames": {
+    "pattern":"^(?!propertyNames$).*$"
+  },
+  "properties":{
+    "number":{
+      "type":"number"
+    },
+    "items": {
+      "type":"array",
+      "prefixItems": [{
+        "type":"number"
+      }],
+      "items":false
+    },
+    "additionalItems":{
+      "description":"Deprecated in Draft 2020-12, see `items`"
+    },
+    "anyOf":{
+      "type":"string",
+      "anyOf":[{
+        "enum":["1"]
+      }]  
+    },
+    "const":{
+      "const":"null"
+    },
+    "contains":{
+      "type":"array",
+      "contains":{
+        "type":"number"
+      }
+    },
+    "dependencies":{
+      "description":"See root object",
+      "type":"boolean"
+    },
+    "dependentRequired":{
+      "description":"See root object",
+      "type":"boolean"
+    },
+    "dependentSchemas":{
+      "description":"See root object",
+      "type":"boolean"
+    },
+    "discriminator":{
+      "description":"Needs failing example"
+    },
+    "discriminatorTag":{
+      "description":"Needs failing example"
+    },
+    "discriminatorMapping":{
+      "description":"Needs failing example"
+    },
+    "enum":{
+      "type":"string",
+      "enum":["1"]
+    },
+    "format":{
+      "type":"string",
+      "format":"date"
+    },
+    "formatMaximum":{
+      "description":"Needs failing example"
+    },
+    "formatExclusiveMaximum":{
+      "description":"Needs failing example"
+    },
+    "formatMinimum":{
+      "description":"Needs failing example"
+    },
+    "formatExclusiveMinimum":{
+      "description":"Needs failing example"
+    },
+    "if":{
+      "if": {
+        "type":"boolean"
+      },
+      "then":{
+        "enum":[true]
+      }
+    },
+    "maximum":{
+      "type":"integer",
+      "maximum":1
+    },
+    "exclusiveMaximum":{
+      "type":"integer",
+      "exclusiveMaximum":1
+    },
+    "maxContains":{
+      "description":"Not supported in ajv?",
+      "type":"array",
+      "contains":{
+        "type":"number"
+      },
+      "maxContains":1
+    },
+    "maxItems":{
+      "type":"array",
+      "maxItems":1
+    },
+    "maxLength":{
+      "type":"string",
+      "maxLength":1
+    },
+    "maxProperties":{
+      "type":"object",
+      "maxProperties":1
+    },
+    "minimum":{
+      "type":"integer",
+      "minimum":1
+    },
+    "exclusiveMinimum":{
+      "type":"integer",
+      "exclusiveMinimum":1
+    },
+    "minContains":{
+      "description":"Not supported in ajv?",
+      "type":"array",
+      "contains":{
+        "type":"number"
+      },
+      "minContains":1
+    },
+    "minItems":{
+      "type":"array",
+      "minItems":1
+    },
+    "minLength":{
+      "type":"string",
+      "minLength":1
+    },
+    "minProperties":{
+      "type":"object",
+      "minProperties":1
+    },
+    "multipleOf":{
+      "type": "number",
+      "multipleOf" : 2
+    },
+    "not":{
+      "not":{
+        "type":"boolean"
+      }
+    },
+    "oneOf":{
+      "type":"string",
+      "oneOf":[{
+        "enum":["1"]
+      }]  
+    },
+    "pattern":{
+      "type":"string",
+      "pattern":"^.+$"
+    },
+    "propertyNames":{
+      "type":"boolean"
+    },
+    "required":{
+      "type":"boolean"
+    },
+    "type":{
+      "type":"null"
+    },
+    "unevaluatedItems":{
+      "type":"array",
+      "contains":{
+        "type":"number"
+      },
+      "unevaluatedItems":false
+    },
+    "unevaluatedProperties":{
+      "description":"Not supported in ajv?"
+    },
+    "uniqueItems":{
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "dependencies":{
+    "const":["dependencies"]
+  },
+  "description":"Not supported in ajv? dependentRequired, dependentSchemas",
+  "dependentRequired": {
+    "const":["dependentRequired"]
+  },
+  "dependentSchemas": {
+    "const": {
+      "properties":{
+        "dependentSchemas":{
+          "type":"string"
+        }
+      }
+    }
+  },
+  "required":["required"]
+}
