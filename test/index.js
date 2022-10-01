@@ -34,7 +34,7 @@ ajv.removeSchema()
 
 
 // process
-const locales = ['en','fr']
+const locales = Object.keys(ftlLocalize).filter(key => key !== 'transpile')
 const ajvErrors = {}
 const ftlErrors = {}
 for(const locale of locales) {
@@ -49,17 +49,15 @@ const counts = {}
 for (let i = 0, l = validate.errors.length; i < l; i++) {
   const keyword = validate.errors[i].keyword
   
-  test(`Should translate "${keyword}" (en)`, async (t) => {
-    deepEqual(ftlErrors[locale][i], ajvErrors[locale][i])
-    notDeepEqual(ftlErrors[locale][i].message, `must pass "${keyword}" keyword validation`)
-  })
-  
-  test(`Devrait traduire "${keyword}" (fr)`, async (t) => {
-    const locale = 'fr'
-    deepEqual(ftlErrors[locale][i], ajvErrors[locale][i])
-    notEqual(ftlErrors[locale][i].message, `doit être valide selon le critère "${keyword}"`)
-    notEqual(ftlErrors[locale][i].message, ftlErrors.en[i].message)
-  })
+  for(const locale of locales) {
+    test(`Should translate "${i}-${keyword}" (${locale})`, async (t) => {
+      ajvErrors[locale][i].message = ajvErrors[locale][i].message.trim()
+      deepEqual(ftlErrors[locale][i], ajvErrors[locale][i])
+      if (locale !== 'en') {
+        notDeepEqual(ftlErrors[locale][i].message, ajvErrors['en'][i].message)
+      }
+    })
+  }
 }
 
 // errorMessages
@@ -103,5 +101,5 @@ test(`Should translate errorMessage with templates`, async (t) => {
   validate({'height':2, 'width':4})
   ajv.removeSchema()
   ftlLocalize.en(validate.errors)
-  deepEqual(validate.errors[0].message, 'must NOT have duplicate items (items ## 2 and 4 are identical)')
+  deepEqual(validate.errors[0].message, 'must not have duplicate items (items ## 2 and 4 are identical)')
 })

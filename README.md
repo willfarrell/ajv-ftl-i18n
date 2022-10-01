@@ -7,6 +7,12 @@ A drop in replacement for [`ajv-i18n`](https://ajv.js.org/packages/ajv-i18n.html
 - Allows overriding messages
 - Supports multi-lingual errorMessages
 
+### AJV Differences
+- `ar` will return aribic numerals, based on locale
+- `en` uses lower case NOT
+- Fixed quote/space inconsistencies between locales
+- Merged schema and jtd together
+
 ## Install
 ```bash
 npm i -D ajv-ftl-i18n

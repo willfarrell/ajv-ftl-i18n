@@ -1,12 +1,12 @@
 -default-message = must pass "{$keyword}" keyword validation
 -comparison-limit = must be {$comparison} {$limit}
 
-items = must NOT have more than {$limit} {$limit ->
+items = must not have more than {$limit} {$limit ->
   [one] item
   *[other] items
   }
 additionalItems = {items}
-additionalProperties = must NOT have additional properties
+additionalProperties = must not have additional properties
 anyOf = must match a schema in "anyOf"
 const = must be equal to constant
 contains = must contain a valid item
@@ -25,7 +25,7 @@ formatExclusiveMinimum = {-comparison-limit}
 if = must match "{$failingKeyword}" schema
 maximum = {-comparison-limit}
 exclusiveMaximum = {maximum}
-maxItems = must NOT have more than {$limit} {$limit ->
+maxItems = must not have more than {$limit} {$limit ->
   [one] item
   *[other] items
   }
@@ -33,42 +33,42 @@ maxLength = must not be longer than {$limit} {$limit ->
   [one] character
   *[other] characters
   }
-maxProperties = must NOT have more than {$limit} {$limit ->
+maxProperties = must not have more than {$limit} {$limit ->
   [one] property
   *[other] properties
   }
 minimum = {-comparison-limit}
 exclusiveMinimum = {minimum}
-minItems = must NOT have less than {$limit} {$limit ->
+minItems = must not have less than {$limit} {$limit ->
   [one] item
   *[other] items
   }
-minLength = must NOT be shorter than {$limit} {$limit ->
+minLength = must not be shorter than {$limit} {$limit ->
   [one] character
   *[other] characters
   }
-minProperties = must NOT have less than {$limit} {$limit ->
+minProperties = must not have less than {$limit} {$limit ->
   [one] property
   *[other] properties
   }
 multipleOf = must be a multiple of {$multipleOf}
-not = must NOT be valid according to schema in "not"
+not = must not be valid according to schema in "not"
 oneOf = must match exactly one schema in "oneOf"
 pattern = must match pattern "{$pattern}"
 patternRequired = must have property matching pattern "{$missingPattern}"
 
 propertyNames = property name is invalid
 required = must have required property {$missingProperty}
-type = must be {$nullable -> 
-  [true] {$type}/null
-  *[default] {$type}
+type = must be {$type}{$nullable -> 
+  [true] /null
+  *[default] {""}
 }
-unevaluatedItems = must NOT have more than {$len} {$len ->
+unevaluatedItems = must not have more than {$len} {$len ->
   [one] item
   *[other] items
 }
-unevaluatedProperties = must NOT have unevaluated properties
-uniqueItems = must NOT have duplicate items (items ## {$j} and {$i} are identical)
+unevaluatedProperties = must not have unevaluated properties
+uniqueItems = must not have duplicate items (items ## {$j} and {$i} are identical)
 
 # jtd
 discriminator = {$error -> 
@@ -78,7 +78,7 @@ discriminator = {$error ->
   }
 # enum = {enum}
 properties = {$error -> 
-    [additional] must NOT have additional properties
+    [additional] must not have additional properties
     [missing] must have property {$missingProperty}
     *[default] {type}
   }

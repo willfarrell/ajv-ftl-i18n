@@ -23,8 +23,8 @@ if = doit correspondre au schéma "{$failingKeyword}"
 maximum = {-comparison-limit}
 exclusiveMaximum = {-comparison-limit}
 maxItems = ne doit pas contenir plus de {$limit} {$limit ->
-  [one] élémént
-  *[other] éléménts
+  [one] élément
+  *[other] éléments
 }
 maxLength = ne doit pas dépasser {$limit} {$limit ->
   [one] caractère
@@ -37,8 +37,8 @@ maxProperties = ne doit pas contenir plus de {$limit} {$limit ->
 minimum = {-comparison-limit}
 exclusiveMinimum = {-comparison-limit}
 minItems = ne doit pas contenir moins de {$limit} {$limit ->
-  [one] élémént
-  *[other] éléménts
+  [one] élément
+  *[other] éléments
 }
 minLength = ne doit pas faire moins de {$limit} {$limit ->
   [one] caractère
@@ -55,9 +55,9 @@ pattern = doit correspondre au format "{$pattern}"
 patternRequired = la propriété doit correspondre au format "{$missingPattern}"
 propertyNames = le nom de propriété est invalide
 required = requiert la propriété {$missingProperty}
-type = doit être de type {$nullable -> 
-  [true] {$type}/null
-  *[default] {$type}
+type = doit être de type {$type}{$nullable -> 
+  [true] /null
+  *[default] {""}
 }
 unevaluatedItems = must NOT have more than {$len} {$len ->
   [one] item
