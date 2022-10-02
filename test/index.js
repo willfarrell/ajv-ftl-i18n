@@ -4,12 +4,8 @@ import {readFile,writeFile} from 'node:fs/promises'
 import ftlLocalize from '../index.js'
 
 import _ajv from 'ajv/dist/2020.js'
-import ajvLocalize from 'ajv-i18n'
 import formats from 'ajv-formats'
-//import formatsDraft2019 from 'ajv-formats-draft2019'
-//import typeofKeyword from 'ajv-keywords/dist/definitions/typeof.js'
 import errors from 'ajv-errors'
-//import uriResolver from 'fast-uri'
 
 const Ajv = _ajv.default // esm workaround for linting
 
@@ -23,7 +19,6 @@ const ajv = new Ajv({
     
   ]})
 formats(ajv)
-//formatsDraft2019(ajv)
 errors(ajv)
 
 const schema = JSON.parse(await readFile(`./test/files/schema.json`, {encoding:'utf8'}))

@@ -42,14 +42,12 @@
   "homepage": "https://middy.js.org",
   "dependencies": {
     "commander": "9.4.0",
-    "fast-uri": "2.1.0",
     "fluent-transpiler": "0.0.1"
   },
   "devDependencies": {
-    "ajv": "8.11.0",
-    "ajv-errors": "3.0.0",
-    "ajv-formats": "2.1.1",
-    "ajv-i18n": "4.2.0",
+    "ajv": "^8.11.0",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^2.1.1",
     "c8": "^7.12.0"
   }
 }
