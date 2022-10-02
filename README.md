@@ -6,6 +6,7 @@ A drop in replacement for [`ajv-i18n`](https://ajv.js.org/packages/ajv-i18n.html
 - Based off of Fluent (`.ftl`)
 - Allows overriding messages
 - Supports multi-lingual errorMessages
+- Supports `en`, `ar`, `ca`, `cs`, `de`, `es`, `fi`, `fr`, `hu`, `id`, `it`, `ja`, `ko`, `nb`, `nl`, `pl`, `pt-BR`, `ru`, `sk`, `sv`, `th`, `zh`, `zh-TW`. PR to correct or add new locales welcome.
 
 ### AJV Differences
 - `ar` will return aribic numerals, based on locale
@@ -135,6 +136,3 @@ dimensions = The dimensions ({$h}x{$w}) are invalid
   }
 }
 ```
-
-## TODO
-- corece intl numbers (https://stackoverflow.com/questions/29255843/is-there-a-way-to-reverse-the-formatting-by-intl-numberformat-in-javascript)
