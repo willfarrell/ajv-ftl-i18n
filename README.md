@@ -6,10 +6,10 @@ A drop in replacement for [`ajv-i18n`](https://ajv.js.org/packages/ajv-i18n.html
 - Based off of Fluent (`.ftl`)
 - Allows overriding messages
 - Supports multi-lingual errorMessages
-- Supports `en`, `ar`, `ca`, `cs`, `de`, `es`, `fi`, `fr`, `hu`, `id`, `it`, `ja`, `ko`, `nb`, `nl`, `pl`, `pt-BR`, `ru`, `sk`, `sv`, `th`, `zh`, `zh-TW`. PR to correct or add new locales welcome.
+- Supports English (`en`), Arabic (`ar`), Catalan (`ca`), Czech (`cs`), German (`de`), Spanish (`es`), Finnish (`fi`), French (`fr`), Hungarian (`hu`), Indonesian (`id`), Italian (`it`), Japanese (`ja`), Korean (`ko`), Norwegian bokmål (`nb`), Dutch (`nl`), Polish (`pl`), Português - Brasil (`pt-BR`), Russian (`ru`), Slovak (`sk`), Swedish (`sv`), Thai (`th`), Chinese (`zh`), Chinese - Taiwan (`zh-TW`). PR to correct or add new locales welcome.
 
 ### AJV Differences
-- `ar` will return aribic numerals, based on locale
+- `ar` will return Arabic numerals, based on locale
 - `en` uses lower case `NOT`
 - `fr` uses `«`,`»` instead of `"`
 - Fixed quote/space inconsistencies between locales
@@ -25,20 +25,19 @@ npm i -D ajv-ftl-i18n
 ```javascript
 import _ajv from 'ajv/dist/2020.js'
 import localize from 'ajv-ftl-i18n'
-import errors from 'ajv-errors'
+import errorMessage from 'ajv-errors'
 
-const Ajv = _ajv.default
+const Ajv = _ajv.default // esm workaround
 
 const ajv = Ajv({
 	allErrors: true, 
 	messages: true // must be `true` for `errorMessages` support
 })
-errors(ajv)
+errorMessage(ajv)
 const validate = ajv.compile(schema)
 const valid = validate(data)
 
 if (!valid) {
-  // ru for Russian
   localize.fr(validate.errors)
   // string with all errors and data paths
   console.log(ajv.errorsText(validate.errors, {separator: '\n'}))
