@@ -22,7 +22,7 @@ formatMaximum = {-comparison-limit}
 formatExclusiveMaximum = {-comparison-limit}
 formatMinimum = {-comparison-limit}
 formatExclusiveMinimum = {-comparison-limit}
-if = må samsvare med skjemaet "{$failingKeyword}"
+if = må være lik schema "{$failingKeyword}"
 maximum = {-comparison-limit}
 exclusiveMaximum = {maximum}
 maxItems = kan ikke ha fler enn {$limit} {$limit ->
@@ -66,13 +66,13 @@ unevaluatedItems = kan ikke ha fler enn {$len} {$len ->
 [one] element
 *[other] elementer
 }
-unevaluatedProperties = må ikke ha uevaluerte egenskaper
+unevaluatedProperties = kan ikke ha uevaluerte attributter
 uniqueItems = kan ikke ha duplikate elemeneter (elementene ## {$j} og {$i} er identiske)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" må være streng
-    [mapping] verdien av taggen "{$tag}" må være i tilordning
+    [tag] tag "{$tag}" må være en streng
+    [mapping] verdien av tag "{$tag}" må finnes i mappingen
     *[default] {type}
   }
 # enum = {enum}
