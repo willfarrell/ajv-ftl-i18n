@@ -63,17 +63,17 @@ type = ha de ser del tipus {$type}{$nullable ->
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must not have more than {$len} {$len ->
-  [one] item
-  *[other] items
-}
-unevaluatedProperties = must not have unevaluated properties
+unevaluatedItems = no ha de tenir més de {$len} {$len ->
+  [one] ítem
+  *[other] ítems
+  }
+unevaluatedProperties = no ha de tenir propietats no avaluades
 uniqueItems = no ha de tenir ítems duplicats (els ítems ## {$j} i {$i} són idèntics)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] l'etiqueta "{$tag}" ha de ser string
+    [mapping] el valor de l'etiqueta "{$tag}" ha d'estar a l'assignació
     *[default] {type}
   }
 # enum = {enum}

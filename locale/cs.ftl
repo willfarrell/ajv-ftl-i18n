@@ -71,17 +71,18 @@ type = musí být {$type}{$nullable ->
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must not have more than {$len} {$len ->
-  [one] item
-  *[other] items
-}
-unevaluatedProperties = must not have unevaluated properties
+unevaluatedItems = nesmí obsahovat víc než {$len} {$len ->
+  [one] prvků
+  [few] prvky
+  *[other] prvek
+  }
+unevaluatedProperties = nesmí mít nehodnocené vlastnosti
 uniqueItems = nesmí obsahovat duplicitní prvky (prvky ## {$j} a {$i} jsou identické)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] tag "{$tag}" musí být řetězec
+    [mapping] hodnota značky "{$tag}" musí být v mapování
     *[default] {type}
   }
 # enum = {enum}

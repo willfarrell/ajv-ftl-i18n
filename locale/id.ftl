@@ -39,17 +39,14 @@ type = harus berupa {$type}{$nullable ->
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must not have more than {$len} {$len ->
-  [one] item
-  *[other] items
-}
-unevaluatedProperties = must not have unevaluated properties
+unevaluatedItems = tidak boleh memiliki lebih dari {$len} item
+unevaluatedProperties = tidak boleh memiliki sifat yang tidak dievaluasi
 uniqueItems = tidak boleh memiliki item duplikat (item ## {$j} dan {$i} identik)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] tag "{$tag}" harus string
+    [mapping] nilai tag "{$tag}" harus dalam pemetaan
     *[default] {type}
   }
 # enum = {enum}

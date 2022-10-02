@@ -1,12 +1,12 @@
--default-message = must pass "{$keyword}" keyword validation
+-default-message = át kell adnia a "{$keyword}" kulcsszóérvényesítést
 -comparison-limit = kell legyen {$comparison} {$limit}
 
 items = nem lehet több, mint {$limit} eleme
 additionalItems = {items}
 additionalProperties = nem lehetnek további elemei
 anyOf = meg kell feleljen legalább egy "anyOf" alaknak
-const = must be equal to constant
-contains = must contain a valid item
+const = állandóval egyenlőnek kell lennie
+contains = érvényes tételt kell tartalmaznia
 dependencies = -nak kell {$depsCount -> 
     [one] legyen
     *[other] legyenek
@@ -16,13 +16,13 @@ dependencies = -nak kell {$depsCount ->
   }: {$deps}, ha van {$property} tulajdonsága
 dependentRequired = {dependencies}
 enum = egyenlő kell legyen valamely előre meghatározott értékkel
-falseSchema = boolean schema is false
+falseSchema = a logikai séma hamis
 format = meg kell feleljen a következő formátumnak: "{$format}"
 formatMaximum = {-comparison-limit}
 formatExclusiveMaximum = {-comparison-limit}
 formatMinimum = {-comparison-limit}
 formatExclusiveMinimum = {-comparison-limit}
-if = must match "{$failingKeyword}" schema
+if = meg kell egyeznie a "{$failingKeyword}" sémával
 maximum = {-comparison-limit}
 exclusiveMaximum = {maximum}
 maxItems = nem lehet több, mint {$limit} eleme
@@ -37,25 +37,21 @@ multipleOf = a többszöröse kell legyen a következő számnak: {$multipleOf}
 not = nem lehet érvényes a "not" alaknak megfelelően
 oneOf = meg kell feleljen pontosan egy "oneOf" alaknak
 pattern = meg kell feleljen a következő mintának: "{$pattern}"
-patternRequired = must have property matching pattern "{$missingPattern}"
-
-propertyNames = property name is invalid
+patternRequired = tulajdonságmegfeleltetési mintával kell rendelkeznie: "{$missingPattern}"
+propertyNames = tulajdonság neve érvénytelen
 required = kell legyen {$missingProperty} tulajdonsága
 type = {$type}{$nullable -> 
   [true] /null
   *[default] {""}
 } kell legyen
-unevaluatedItems = must not have more than {$len} {$len ->
-  [one] item
-  *[other] items
-}
-unevaluatedProperties = must not have unevaluated properties
+unevaluatedItems = nem lehet több, mint {$len} eleme
+unevaluatedProperties = nem rendelkezhetnek értéktelen tulajdonságokkal
 uniqueItems = nem lehetnek azonos elemei ({$j} és {$i} elemek azonosak)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] címke "{$tag}" karakterláncnak kell lennie
+    [mapping] a "{$tag}" címke értékének leképezésben kell lennie
     *[default] {type}
   }
 # enum = {enum}

@@ -59,7 +59,13 @@ patternRequired = täytyy sisältää ominaisuus joka vastaa kaavaa "{$missingPa
 
 propertyNames = ominaisuuden nimi on virheellinen
 required = täytyy sisältää vaadittu ominaisuus {$missingProperty}
-type = täytyy olla {$type}{$nullable -> 
+type = täytyy olla {$type -> 
+  [number] numero
+  [integer] kokonaisluku
+  [string] merkkijono
+  [boolean] boolean
+  *[default] {$type}
+}{$nullable -> 
   [true] /null
   *[default] {""}
 }

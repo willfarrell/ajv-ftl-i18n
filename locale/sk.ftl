@@ -23,7 +23,7 @@ formatMaximum = {-comparison-limit}
 formatExclusiveMaximum = {-comparison-limit}
 formatMinimum = {-comparison-limit}
 formatExclusiveMinimum = {-comparison-limit}
-if = must match "{$failingKeyword}" schema
+if = musí sa zhodovať so schémou "{$failingKeyword}"
 maximum = {-comparison-limit}
 exclusiveMaximum = {maximum}
 maxItems = nesmie obsahovať viac než {$limit} {$limit ->
@@ -65,17 +65,17 @@ type = musí byť {$type}{$nullable ->
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must NOT have more than {$len} {$len ->
-  [one] item
-  *[other] items
+unevaluatedItems = nesmie obsahovať viac než {$len} {$len ->
+[one] prvok
+*[other] prvkov
 }
-unevaluatedProperties = must NOT have unevaluated properties
+unevaluatedProperties = nesmú mať neohodnotené vlastnosti
 uniqueItems = nesmie obsahovať duplicitné prvky (prvky ## {$j} a {$i} sú rovnaké)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] značka "{$tag}" musí byť reťazec
+    [mapping] hodnota značky "{$tag}" musí byť v mapovaní
     *[default] {type}
   }
 # enum = {enum}

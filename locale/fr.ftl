@@ -7,19 +7,19 @@ items = ne doit pas contenir plus de {$limit} {$limit ->
 }
 additionalItems = {items}
 additionalProperties = ne doit pas contenir de propriétés additionnelles
-anyOf = doit correspondre à un schéma de "anyOf"
+anyOf = doit correspondre à un schéma de « anyOf »
 const = doit être égal à la constante
 contains = doit contenir un élément valide
 dependencies = doit avoir la propriété {$deps} quand la propriété {$property} est présente
 dependentRequired = {dependencies}
 enum = doit être égal à une des valeurs prédéfinies
-falseSchema = le schema est "false"
-format = doit correspondre au format "{$format}"
+falseSchema = le schema est « false »
+format = doit correspondre au format « {$format} »
 formatMaximum = {-comparison-limit}
 formatExclusiveMaximum = {-comparison-limit}
 formatMinimum = {-comparison-limit}
 formatExclusiveMinimum = {-comparison-limit}
-if = doit correspondre au schéma "{$failingKeyword}"
+if = doit correspondre au schéma « {$failingKeyword} »
 maximum = {-comparison-limit}
 exclusiveMaximum = {-comparison-limit}
 maxItems = ne doit pas contenir plus de {$limit} {$limit ->
@@ -49,27 +49,27 @@ minProperties = ne doit pas contenir moins de {$limit} {$limit ->
   *[other] propriétés
 }
 multipleOf = doit être un multiple de {$multipleOf}
-not = est invalide selon le schéma "not"
-oneOf = doit correspondre à exactement un schéma de "oneOf"
-pattern = doit correspondre au format "{$pattern}"
-patternRequired = la propriété doit correspondre au format "{$missingPattern}"
+not = est invalide selon le schéma « not »
+oneOf = doit correspondre à exactement un schéma de « oneOf »
+pattern = doit correspondre au format « {$pattern} »
+patternRequired = la propriété doit correspondre au format « {$missingPattern} »
 propertyNames = le nom de propriété est invalide
 required = requiert la propriété {$missingProperty}
 type = doit être de type {$type}{$nullable -> 
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must NOT have more than {$len} {$len ->
-  [one] item
-  *[other] items
+unevaluatedItems = ne doit pas contenir plus de {$len} {$len ->
+  [one] élément
+  *[other] éléments
 }
-unevaluatedProperties = must NOT have unevaluated properties
+unevaluatedProperties = ne doit pas avoir de propriétés non évaluées
 uniqueItems = ne doit pas contenir de doublons (les éléments ## {$j} et {$i} sont identiques)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] la balise « {$tag} » doit être une chaîne
+    [mapping] la valeur de la balise « {$tag} » doit être dans le mappage
     *[default] {type}
   }
 # enum = {enum}
@@ -81,5 +81,5 @@ properties = {$error ->
 # type = {type}
 elements = {type}
 values = {type}
-union = doit correspondre à un schéma de "union"
+union = doit correspondre à un schéma de « union »
 

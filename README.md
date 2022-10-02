@@ -9,8 +9,10 @@ A drop in replacement for [`ajv-i18n`](https://ajv.js.org/packages/ajv-i18n.html
 
 ### AJV Differences
 - `ar` will return aribic numerals, based on locale
-- `en` uses lower case NOT
+- `en` uses lower case `NOT`
+- `fr` uses `«`,`»` instead of `"`
 - Fixed quote/space inconsistencies between locales
+- Added in computer translation when missing
 - Merged schema and jtd together
 
 ## Install
@@ -49,7 +51,7 @@ Used to transpile custom ftl files into ajv localizations.
 ```bash
 Usage: ajv-ftl [options] <input>
 
-Compile Fluent (.ftl) files to JavaScript (.js or .mjs) for ajv
+Transpile Fluent (.ftl) files to JavaScript (.js or .mjs) for ajv
 
 Arguments:
   input                  Path to the Fluent file to compile

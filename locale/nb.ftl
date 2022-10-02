@@ -22,7 +22,7 @@ formatMaximum = {-comparison-limit}
 formatExclusiveMaximum = {-comparison-limit}
 formatMinimum = {-comparison-limit}
 formatExclusiveMinimum = {-comparison-limit}
-if = must match "{$failingKeyword}" schema
+if = må samsvare med skjemaet "{$failingKeyword}"
 maximum = {-comparison-limit}
 exclusiveMaximum = {maximum}
 maxItems = kan ikke ha fler enn {$limit} {$limit ->
@@ -50,8 +50,7 @@ not = kan ikke samsvare med schema i "not"
 oneOf = må samsvare med nøyaktig ett schema i "oneOf"
 pattern = må samsvare med mønsteret "{$pattern}"
 patternRequired = må ha en egenskap som samsvarer med mønsteret "{$missingPattern}"
-
-propertyNames = egenskapen med navnet "{$propertyNameout}" er ugyldig
+propertyNames = egenskapsnavnet er ugyldig
 required = må ha den påkrevde egenskapen {$missingProperty}
 type = må være {$type ->
   [number] et tall
@@ -63,17 +62,17 @@ type = må være {$type ->
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must NOT have more than {$len} {$len ->
-  [one] item
-  *[other] items
+unevaluatedItems = kan ikke ha fler enn {$len} {$len ->
+[one] element
+*[other] elementer
 }
-unevaluatedProperties = must NOT have unevaluated properties
+unevaluatedProperties = må ikke ha uevaluerte egenskaper
 uniqueItems = kan ikke ha duplikate elemeneter (elementene ## {$j} og {$i} er identiske)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] tag "{$tag}" må være streng
+    [mapping] verdien av taggen "{$tag}" må være i tilordning
     *[default] {type}
   }
 # enum = {enum}

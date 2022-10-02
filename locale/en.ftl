@@ -56,7 +56,6 @@ not = must not be valid according to schema in "not"
 oneOf = must match exactly one schema in "oneOf"
 pattern = must match pattern "{$pattern}"
 patternRequired = must have property matching pattern "{$missingPattern}"
-
 propertyNames = property name is invalid
 required = must have required property {$missingProperty}
 type = must be {$type}{$nullable -> 

@@ -9,20 +9,20 @@ additionalItems = {items}
 additionalProperties = nie powinien zawierać dodatkowych pól
 anyOf = powinien pasować do wzoru z sekcji "anyOf"
 const = powinien być równy stałej
-contains = must contain a valid item
+contains = musi zawierać prawidłowy przedmiot
 dependencies = powinien zawierać {$depsCount -> 
     [one] pole
     *[other] pola
   } {$deps} kiedy pole {$property} jest obecne
 dependentRequired = {dependencies}
 enum = powinien być równy jednej z predefiniowanych wartości
-falseSchema = boolean schema is false
+falseSchema = schemat logiczny jest fałszywy
 format = powinien zgadzać się z formatem "{$format}"
 formatMaximum = {-comparison-limit}
 formatExclusiveMaximum = {-comparison-limit}
 formatMinimum = {-comparison-limit}
 formatExclusiveMinimum = {-comparison-limit}
-if = must match "{$failingKeyword}" schema
+if = musi być zgodny ze schematem "{$failingKeyword}"
 maximum = {-comparison-limit}
 exclusiveMaximum = {maximum}
 maxItems = nie powinien mieć więcej niż {$limit} {$limit ->
@@ -57,23 +57,23 @@ oneOf = powinien pasować do jednego wzoru z sekcji "oneOf"
 pattern = powinien zgadzać się ze wzorem "{$pattern}"
 patternRequired = powinien mieć pole pasujące do wzorca "{$missingPattern}"
 
-propertyNames = property name is invalid
+propertyNames = nazwa właściwości jest nieprawidłowa
 required = powinien zawierać wymagane pole {$missingProperty}
 type = powinien być {$type}{$nullable -> 
   [true] /null
   *[default] {""}
 }
-unevaluatedItems = must NOT have more than {$len} {$len ->
-  [one] item
-  *[other] items
+unevaluatedItems = nie powinien mieć więcej niż {$len} {$len ->
+  [one] elementu
+  *[other] elementw
 }
-unevaluatedProperties = must NOT have unevaluated properties
+unevaluatedProperties = nie może mieć nieocenionych właściwości
 uniqueItems = nie powinien zawierać elementów które się powtarzają (elementy {$j} i {$i} są identyczne)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] tag "{$tag}" musi być ciągiem znaków
+    [mapping] wartość tagu "{$tag}" musi być w mapowaniu
     *[default] {type}
   }
 # enum = {enum}

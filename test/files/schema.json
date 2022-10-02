@@ -1,28 +1,24 @@
 {
   "$id": "http://example.org/schemas/default.json",
   "type":"object",
-  "additionalProperties": false,
-  "propertyNames": {
-    "pattern":"^(?!propertyNames$).*$"
-  },
   "properties":{
-    "number":{
-      "type":"number"
-    },
-    "items": {
+    "additionalItems":{
+      "description":"Deprecated in Draft 2020-12, see `items`",
       "type":"array",
       "prefixItems": [{
         "type":"number"
       }],
       "items":false
     },
-    "additionalItems":{
-      "description":"Deprecated in Draft 2020-12, see `items`"
+    "additionalProperties": {
+      "additionalProperties": false,
+      "type":"object",
+      "properties":{}
     },
     "anyOf":{
       "type":"string",
       "anyOf":[{
-        "enum":["1"]
+        "type":"string"
       }]  
     },
     "const":{
@@ -35,25 +31,41 @@
       }
     },
     "dependencies":{
-      "description":"See root object",
-      "type":"boolean"
+      "dependencies":{
+        "a":["b"]
+      },
+      "type":"object",
+      "properties":{}
     },
     "dependentRequired":{
-      "description":"See root object",
-      "type":"boolean"
+      "dependentRequired": {
+        "a":["b"]
+      },
+      "type":"object",
+      "properties":{}
     },
     "dependentSchemas":{
-      "description":"See root object",
-      "type":"boolean"
+      "description":"TODO Needs failing example",
+      "dependentSchemas": {
+        "a": {
+          "properties":{
+            "b": {
+              "type":"string"
+            }
+          }
+        }
+      },
+      "type":"object",
+      "properties":{}
     },
     "discriminator":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example"
     },
     "discriminatorTag":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example"
     },
     "discriminatorMapping":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example"
     },
     "enum":{
       "type":"string",
@@ -64,16 +76,28 @@
       "format":"date"
     },
     "formatMaximum":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example",
+      "type":"string",
+      "format":"date",
+      "formatMaximum":"2001-01-01"
     },
     "formatExclusiveMaximum":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example",
+      "type":"string",
+      "format":"date",
+      "formatExclusiveMaximum":"2001-01-01"
     },
     "formatMinimum":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example",
+      "type":"string",
+      "format":"date",
+      "formatMinimum":"2001-01-01"
     },
     "formatExclusiveMinimum":{
-      "description":"Needs failing example"
+      "description":"TODO Needs failing example",
+      "type":"string",
+      "format":"date",
+      "formatExclusiveMinimum":"2001-01-01"
     },
     "if":{
       "if": {
@@ -82,6 +106,13 @@
       "then":{
         "enum":[true]
       }
+    },
+    "items": {
+      "type":"array",
+      "prefixItems": [{
+        "type":"number"
+      }],
+      "items":false
     },
     "maximum":{
       "type":"integer",
@@ -92,7 +123,7 @@
       "exclusiveMaximum":1
     },
     "maxContains":{
-      "description":"Not supported in ajv?",
+      "description":"TODO Needs failing example",
       "type":"array",
       "contains":{
         "type":"number"
@@ -120,7 +151,7 @@
       "exclusiveMinimum":1
     },
     "minContains":{
-      "description":"Not supported in ajv?",
+      "description":"TODO Needs failing example",
       "type":"array",
       "contains":{
         "type":"number"
@@ -159,44 +190,36 @@
       "pattern":"^.+$"
     },
     "propertyNames":{
-      "type":"boolean"
+      "propertyNames": {
+        "pattern":"^b$"
+      },
+      "type":"object",
+      "properties":{}
     },
     "required":{
-      "type":"boolean"
+      "required":["a"],
+      "type":"object",
+      "properties":{}
     },
     "type":{
       "type":"null"
     },
     "unevaluatedItems":{
+      "description":"TODO Needs failing example",
       "type":"array",
       "contains":{
         "type":"number"
       },
-      "unevaluatedItems":false
+      "unevaluatedItems": {
+        "type":"boolean"
+      }
     },
     "unevaluatedProperties":{
-      "description":"Not supported in ajv?"
+      "description":"TODO Needs failing example"
     },
     "uniqueItems":{
       "type": "array",
       "uniqueItems": true
     }
-  },
-  "dependencies":{
-    "const":["dependencies"]
-  },
-  "description":"Not supported in ajv? dependentRequired, dependentSchemas",
-  "dependentRequired": {
-    "const":["dependentRequired"]
-  },
-  "dependentSchemas": {
-    "const": {
-      "properties":{
-        "dependentSchemas":{
-          "type":"string"
-        }
-      }
-    }
-  },
-  "required":["required"]
+  }
 }

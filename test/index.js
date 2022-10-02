@@ -38,8 +38,6 @@ const locales = Object.keys(ftlLocalize).filter(key => key !== 'transpile')
 const ajvErrors = {}
 const ftlErrors = {}
 for(const locale of locales) {
-  ajvErrors[locale] = JSON.parse(JSON.stringify(validate.errors))
-  ajvLocalize[locale](ajvErrors[locale])
   ftlErrors[locale] = JSON.parse(JSON.stringify(validate.errors))
   ftlLocalize[locale](ftlErrors[locale])
 }
@@ -49,16 +47,19 @@ const counts = {}
 for (let i = 0, l = validate.errors.length; i < l; i++) {
   const keyword = validate.errors[i].keyword
   
+  if (counts[keyword]) continue
+  
   for(const locale of locales) {
     test(`Should translate "${i}-${keyword}" (${locale})`, async (t) => {
-      ajvErrors[locale][i].message = ajvErrors[locale][i].message.trim()
-      deepEqual(ftlErrors[locale][i], ajvErrors[locale][i])
       if (locale !== 'en') {
-        notDeepEqual(ftlErrors[locale][i].message, ajvErrors['en'][i].message)
+        notDeepEqual(ftlErrors[locale][i].message, ftlErrors['en'][i].message)
       }
     })
   }
+  
+  counts[keyword] ??= true
 }
+//console.log(counts)
 
 // errorMessages
 test(`Should translate errorMessage`, async (t) => {

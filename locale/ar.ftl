@@ -36,26 +36,23 @@ patternRequired = يجب أن يحوي خاصية توافق النمط "{$missi
 propertyNames = اسم الخاصية غير صالح
 required = هذا الحقل إلزامي
 type = قيمة هذا الحقل غير صالحة
-unevaluatedItems = must NOT have more than {$len} {$len ->
-  [one] item
-  *[other] items
-}
-unevaluatedProperties = must NOT have unevaluated properties
+unevaluatedItems = يجب أن لا يحوي أكثر من {$len} عنصر
+unevaluatedProperties = يجب ألا يكون لديك خصائص غير مقيمة
 uniqueItems = يجب أن لا يحوي عناصر مكررة (العنصر ## {$j} و {$i} متطابقة)
 
 # jtd
 discriminator = {$error -> 
-    [tag] tag "{$tag}" must be string
-    [mapping] value of tag "{$tag}" must be in mapping
+    [tag] العلامة "{$tag}" يجب أن تكون سلسلة
+    [mapping] يجب أن تكون قيمة العلامة "{$tag}" في التعيين
     *[default] {type}
   }
 # enum = {enum}
 properties = {$error -> 
-    [additional] must NOT have additional properties
-    [missing] must have property {$missingProperty}
+    [additional] يجب ألا يكون لديك خصائص إضافية
+    [missing] يجب أن يكون لديك خاصية {$missingProperty}
     *[default] {type}
   }
 # type = {type}
 elements = {type}
 values = {type}
-union = must match a schema in "union"
+union = يجب أن يتطابق مع مخطط في "union"
