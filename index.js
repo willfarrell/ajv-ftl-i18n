@@ -1,9 +1,9 @@
 import transpile from './transpile.js'
-import en from './locale/en.js'
 import ar from './locale/ar.js'
 import ca from './locale/ca.js'
 import cs from './locale/cs.js'
 import de from './locale/de.js'
+import en from './locale/en.js'
 import es from './locale/es.js'
 import fi from './locale/fi.js'
 import fr from './locale/fr.js'
@@ -25,11 +25,11 @@ import zhTW from './locale/zh-TW.js'
 
 export default {
   transpile,
-  en,
   ar,
   ca,
   cs,
   de,
+  en,
   es,
   fi,
   fr,
