@@ -1,6 +1,6 @@
 {
   "name": "ajv-ftl-i18n",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Transpile Fluent (ftl) files into ajv error translations.",
   "main": "index.js",
   "type": "module",

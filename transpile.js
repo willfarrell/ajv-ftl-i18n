@@ -1,4 +1,4 @@
-import fluentTranspile from '../fluent-transpiler/index.js'
+import fluentTranspile from 'fluent-transpiler'
 
 const exportDefault = `(errors) => {
   if (!errors?.length) return
@@ -26,4 +26,9 @@ const exportDefault = `(errors) => {
 }
 `
 
-export default (ftl, options) => fluentTranspile(ftl, {...options, exportDefault})
+export default (ftl, options) =>
+  fluentTranspile(ftl, {
+    comments: false,
+    ...options,
+    exportDefault
+  })
