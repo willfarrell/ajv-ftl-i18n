@@ -1,4 +1,4 @@
-import transpile from './transpile.js'
+import transpileImport from './transpile.js'
 import ar from './locale/ar.js'
 import ca from './locale/ca.js'
 import cs from './locale/cs.js'
@@ -23,6 +23,8 @@ import th from './locale/th.js'
 import zh from './locale/zh.js'
 import zhTW from './locale/zh-TW.js'
 
+export const transpile = transpileImport
+
 export default {
   transpile,
   ar,
@@ -41,11 +43,11 @@ export default {
   nb,
   nl,
   pl,
-  'pt-BR':ptBR,
+  'pt-BR': ptBR,
   ru,
   sk,
   sv,
   th,
   zh,
-  'zh-TW':zhTW,
+  'zh-TW': zhTW
 }
