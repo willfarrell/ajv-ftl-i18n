@@ -1,6 +1,6 @@
 {
   "name": "ajv-ftl-i18n",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Transpile Fluent (ftl) files into ajv error translations.",
   "main": "index.js",
   "type": "module",
@@ -42,11 +42,11 @@
   },
   "homepage": "https://github.com/willfarrell/ajv-ftl-i18n",
   "dependencies": {
-    "commander": "9.4.1",
-    "fluent-transpiler": "0.0.2"
+    "commander": "10.0.0",
+    "fluent-transpiler": "0.2.1"
   },
   "devDependencies": {
-    "ajv": "^8.11.0",
+    "ajv": "^8.12.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.1",
     "c8": "^7.12.0"
