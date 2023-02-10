@@ -11,7 +11,7 @@ const exportDefault = `(errors) => {
       const [message, ...valuesPairs] = e.message.split(', ')
       valuesPairs.forEach(pair => {
         const [key, value] = pair.split(':')
-        values[key] = value
+        values[key] = value.replace(regExpJsonPointerQuote, '')
       })
       source ??= __exports[message] ?? __exports['_'+message] ?? e.message
     } else {
@@ -24,6 +24,7 @@ const exportDefault = `(errors) => {
     }
   }
 }
+const regExpJsonPointerQuote = /(^"|"$)/g
 `
 
 export default (ftl, options) =>

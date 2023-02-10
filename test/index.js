@@ -1,6 +1,6 @@
 import test from 'node:test'
-import { deepEqual, notDeepEqual,notEqual } from 'node:assert'
-import {readFile,writeFile} from 'node:fs/promises'
+import { deepEqual, notDeepEqual, notEqual } from 'node:assert'
+import { readFile, writeFile } from 'node:fs/promises'
 import ftlLocalize from '../index.js'
 
 import _ajv from 'ajv/dist/2020.js'
@@ -9,30 +9,31 @@ import errors from 'ajv-errors'
 
 const Ajv = _ajv.default // esm workaround for linting
 
-
 // ajv
 const ajv = new Ajv({
-  allErrors:true,
+  allErrors: true,
   messages: true, // must be true for errorMessages
   //uriResolver,
-  keywords: [
-    
-  ]})
+  keywords: []
+})
 formats(ajv)
 errors(ajv)
 
-const schema = JSON.parse(await readFile(`./test/files/schema.json`, {encoding:'utf8'}))
-const data = JSON.parse(await readFile(`./test/files/schema-data.json`, {encoding:'utf8'}))
+const schema = JSON.parse(
+  await readFile(`./test/files/schema.json`, { encoding: 'utf8' })
+)
+const data = JSON.parse(
+  await readFile(`./test/files/schema-data.json`, { encoding: 'utf8' })
+)
 const validate = ajv.compile(schema)
 validate(data)
 ajv.removeSchema()
 
-
 // process
-const locales = Object.keys(ftlLocalize).filter(key => key !== 'transpile')
+const locales = Object.keys(ftlLocalize).filter((key) => key !== 'transpile')
 const ajvErrors = {}
 const ftlErrors = {}
-for(const locale of locales) {
+for (const locale of locales) {
   ftlErrors[locale] = JSON.parse(JSON.stringify(validate.errors))
   ftlLocalize[locale](ftlErrors[locale])
 }
@@ -41,17 +42,17 @@ for(const locale of locales) {
 const counts = {}
 for (let i = 0, l = validate.errors.length; i < l; i++) {
   const keyword = validate.errors[i].keyword
-  
+
   if (counts[keyword]) continue
-  
-  for(const locale of locales) {
+
+  for (const locale of locales) {
     test(`Should translate "${i}-${keyword}" (${locale})`, async (t) => {
       if (locale !== 'en') {
         notDeepEqual(ftlErrors[locale][i].message, ftlErrors['en'][i].message)
       }
     })
   }
-  
+
   counts[keyword] ??= true
 }
 //console.log(counts)
@@ -59,13 +60,13 @@ for (let i = 0, l = validate.errors.length; i < l; i++) {
 // errorMessages
 test(`Should translate errorMessage`, async (t) => {
   const schema = {
-    type: "object",
-    required: ["foo"],
+    type: 'object',
+    required: ['foo'],
     properties: {
-      foo: {type: "integer"},
+      foo: { type: 'integer' }
     },
     additionalProperties: false,
-    errorMessage: "anyOf",
+    errorMessage: 'anyOf'
   }
   const validate = ajv.compile(schema)
   validate({})
@@ -76,26 +77,28 @@ test(`Should translate errorMessage`, async (t) => {
 
 test(`Should translate errorMessage with templates`, async (t) => {
   const schema = {
-    type: "object",
+    type: 'object',
     properties: {
       height: {
-        type: "number",
-        minimum: 4,
+        type: 'number',
+        minimum: 4
       },
       width: {
-        type: "number",
-        minimum: 4,
-      },
+        type: 'string'
+      }
     },
     errorMessage: {
       properties: {
-        height: "uniqueItems, j:${/height}, i:${/width}",
-      },
-    },
+        height: 'uniqueItems, j:${/height}, i:${/width}'
+      }
+    }
   }
   const validate = ajv.compile(schema)
-  validate({'height':2, 'width':4})
+  validate({ height: 2, width: '4' })
   ajv.removeSchema()
   ftlLocalize.en(validate.errors)
-  deepEqual(validate.errors[0].message, 'must not have duplicate items (items ## 2 and 4 are identical)')
+  deepEqual(
+    validate.errors[0].message,
+    'must not have duplicate items (items ## 2 and 4 are identical)'
+  )
 })
