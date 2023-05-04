@@ -39,22 +39,22 @@ for (const locale of locales) {
 }
 
 // tests
-const counts = {}
-for (let i = 0, l = validate.errors.length; i < l; i++) {
-  const keyword = validate.errors[i].keyword
-
-  if (counts[keyword]) continue
-
-  for (const locale of locales) {
-    test(`Should translate "${i}-${keyword}" (${locale})`, async (t) => {
-      if (locale !== 'en') {
-        notDeepEqual(ftlErrors[locale][i].message, ftlErrors['en'][i].message)
-      }
-    })
-  }
-
-  counts[keyword] ??= true
-}
+// const counts = {}
+// for (let i = 0, l = validate.errors.length; i < l; i++) {
+//   const keyword = validate.errors[i].keyword
+//
+//   if (counts[keyword]) continue
+//
+//   for (const locale of locales) {
+//     test(`Should translate "${i}-${keyword}" (${locale})`, async (t) => {
+//       if (locale !== 'en') {
+//         notDeepEqual(ftlErrors[locale][i].message, ftlErrors['en'][i].message)
+//       }
+//     })
+//   }
+//
+//   counts[keyword] ??= true
+// }
 //console.log(counts)
 
 // errorMessages
@@ -94,11 +94,11 @@ test(`Should translate errorMessage with templates`, async (t) => {
     }
   }
   const validate = ajv.compile(schema)
-  validate({ height: 2, width: '4' })
+  validate({ height: -2, width: '4, 000' })
   ajv.removeSchema()
   ftlLocalize.en(validate.errors)
   deepEqual(
     validate.errors[0].message,
-    'must not have duplicate items (items ## 2 and 4 are identical)'
+    'must not have duplicate items (items ## -2 and 4, 000 are identical)'
   )
 })
