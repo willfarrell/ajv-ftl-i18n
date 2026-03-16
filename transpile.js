@@ -30,9 +30,16 @@ const regExpJsonPointerPairs = /([a-zA-Z0-9_-]+):(".*"|[^,"]+)/g
 const regExpJsonPointerQuote = /(^"|"$)/g
 `;
 
-export default (ftl, options) =>
-	fluentTranspile(ftl, {
-		comments: false,
-		...options,
-		exportDefault,
-	});
+export default (ftl, options) => {
+	const originalError = console.error;
+	console.error = Function.prototype;
+	try {
+		return fluentTranspile(ftl, {
+			comments: false,
+			...options,
+			exportDefault,
+		});
+	} finally {
+		console.error = originalError;
+	}
+};
