@@ -1,41 +1,42 @@
-import test from 'node:test'
-import { deepEqual, notDeepEqual, notEqual } from 'node:assert'
-import { readFile, writeFile } from 'node:fs/promises'
-import ftlLocalize from '../index.js'
+// Copyright 2026 will Farrell, and ajv-ftl-i18n contributors.
+// SPDX-License-Identifier: MIT
+import { deepEqual, notDeepEqual, notEqual } from "node:assert";
+import { readFile, writeFile } from "node:fs/promises";
+import test from "node:test";
+import _ajv from "ajv/dist/2020.js";
+import errors from "ajv-errors";
+import formats from "ajv-formats";
+import ftlLocalize from "../index.js";
 
-import _ajv from 'ajv/dist/2020.js'
-import formats from 'ajv-formats'
-import errors from 'ajv-errors'
-
-const Ajv = _ajv.default // esm workaround for linting
+const Ajv = _ajv.default; // esm workaround for linting
 
 // ajv
 const ajv = new Ajv({
-  allErrors: true,
-  messages: true, // must be true for errorMessages
-  //uriResolver,
-  keywords: []
-})
-formats(ajv)
-errors(ajv)
+	allErrors: true,
+	messages: true, // must be true for errorMessages
+	//uriResolver,
+	keywords: [],
+});
+formats(ajv);
+errors(ajv);
 
 const schema = JSON.parse(
-  await readFile(`./test/files/schema.json`, { encoding: 'utf8' })
-)
+	await readFile(`./test/files/schema.json`, { encoding: "utf8" }),
+);
 const data = JSON.parse(
-  await readFile(`./test/files/schema-data.json`, { encoding: 'utf8' })
-)
-const validate = ajv.compile(schema)
-validate(data)
-ajv.removeSchema()
+	await readFile(`./test/files/schema-data.json`, { encoding: "utf8" }),
+);
+const validate = ajv.compile(schema);
+validate(data);
+ajv.removeSchema();
 
 // process
-const locales = Object.keys(ftlLocalize).filter((key) => key !== 'transpile')
-const ajvErrors = {}
-const ftlErrors = {}
+const locales = Object.keys(ftlLocalize).filter((key) => key !== "transpile");
+const ajvErrors = {};
+const ftlErrors = {};
 for (const locale of locales) {
-  ftlErrors[locale] = JSON.parse(JSON.stringify(validate.errors))
-  ftlLocalize[locale](ftlErrors[locale])
+	ftlErrors[locale] = JSON.parse(JSON.stringify(validate.errors));
+	ftlLocalize[locale](ftlErrors[locale]);
 }
 
 // tests
@@ -59,46 +60,46 @@ for (const locale of locales) {
 
 // errorMessages
 test(`Should translate errorMessage`, async (t) => {
-  const schema = {
-    type: 'object',
-    required: ['foo'],
-    properties: {
-      foo: { type: 'integer' }
-    },
-    additionalProperties: false,
-    errorMessage: 'anyOf'
-  }
-  const validate = ajv.compile(schema)
-  validate({})
-  ajv.removeSchema()
-  ftlLocalize.en(validate.errors)
-  deepEqual(validate.errors[0].message, 'must match a schema in "anyOf"')
-})
+	const schema = {
+		type: "object",
+		required: ["foo"],
+		properties: {
+			foo: { type: "integer" },
+		},
+		additionalProperties: false,
+		errorMessage: "anyOf",
+	};
+	const validate = ajv.compile(schema);
+	validate({});
+	ajv.removeSchema();
+	ftlLocalize.en(validate.errors);
+	deepEqual(validate.errors[0].message, 'must match a schema in "anyOf"');
+});
 
 test(`Should translate errorMessage with templates`, async (t) => {
-  const schema = {
-    type: 'object',
-    properties: {
-      height: {
-        type: 'number',
-        minimum: 4
-      },
-      width: {
-        type: 'string'
-      }
-    },
-    errorMessage: {
-      properties: {
-        height: 'uniqueItems, j:${/height}, i:${/width}'
-      }
-    }
-  }
-  const validate = ajv.compile(schema)
-  validate({ height: -2, width: '4, 000' })
-  ajv.removeSchema()
-  ftlLocalize.en(validate.errors)
-  deepEqual(
-    validate.errors[0].message,
-    'must not have duplicate items (items ## -2 and 4, 000 are identical)'
-  )
-})
+	const schema = {
+		type: "object",
+		properties: {
+			height: {
+				type: "number",
+				minimum: 4,
+			},
+			width: {
+				type: "string",
+			},
+		},
+		errorMessage: {
+			properties: {
+				height: "uniqueItems, j:${/height}, i:${/width}",
+			},
+		},
+	};
+	const validate = ajv.compile(schema);
+	validate({ height: -2, width: "4, 000" });
+	ajv.removeSchema();
+	ftlLocalize.en(validate.errors);
+	deepEqual(
+		validate.errors[0].message,
+		"must not have duplicate items (items ## -2 and 4, 000 are identical)",
+	);
+});

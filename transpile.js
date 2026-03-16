@@ -1,4 +1,6 @@
-import fluentTranspile from 'fluent-transpiler'
+// Copyright 2026 will Farrell, and ajv-ftl-i18n contributors.
+// SPDX-License-Identifier: MIT
+import fluentTranspile from "fluent-transpiler";
 
 const exportDefault = `(errors) => {
   if (!errors?.length) return
@@ -26,11 +28,11 @@ const exportDefault = `(errors) => {
 }
 const regExpJsonPointerPairs = /([a-zA-Z0-9_-]+):(".*"|[^,"]+)/g
 const regExpJsonPointerQuote = /(^"|"$)/g
-`
+`;
 
 export default (ftl, options) =>
-  fluentTranspile(ftl, {
-    comments: false,
-    ...options,
-    exportDefault
-  })
+	fluentTranspile(ftl, {
+		comments: false,
+		...options,
+		exportDefault,
+	});
