@@ -67,8 +67,8 @@
 	},
 	"homepage": "https://github.com/willfarrell/ajv-ftl-i18n",
 	"dependencies": {
-		"commander": "10.0.0",
-		"fluent-transpiler": "0.2.1"
+		"commander": "14.0.3",
+		"fluent-transpiler": "0.3.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",
@@ -76,12 +76,12 @@
 		"@commitlint/config-conventional": "^20.0.0",
 		"ajv": "^8.18.0",
 		"ajv-errors": "^3.0.0",
-		"ajv-formats": "^2.1.1",
-		"fast-check": "^3.0.0",
+		"ajv-formats": "^3.0.1",
+		"fast-check": "^4.6.0",
 		"husky": "^9.0.0",
 		"license-check-and-add": "4.0.5",
-		"tinybench": "^4.0.0",
-		"tstyche": "^3.0.0"
+		"tinybench": "^6.0.0",
+		"tstyche": "^6.2.0"
 	},
 	"funding": {
 		"type": "github",
