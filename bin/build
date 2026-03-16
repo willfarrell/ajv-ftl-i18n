@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-/*
-Copyright 2026 will Farrell, and ajv-ftl-i18n contributors.
-SPDX-License-Identifier: MIT
-*/
 set -e
 
 srcDir=./locale/
