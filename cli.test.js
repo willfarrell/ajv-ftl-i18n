@@ -1,4 +1,4 @@
-import { match, ok, strictEqual } from "node:assert";
+import { match, ok } from "node:assert";
 import { execFile } from "node:child_process";
 import { readFile, unlink } from "node:fs/promises";
 import test from "node:test";

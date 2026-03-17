@@ -1,5 +1,5 @@
-import { deepEqual, notDeepEqual, notEqual } from "node:assert";
-import { readFile, writeFile } from "node:fs/promises";
+import { deepEqual } from "node:assert";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import _ajv from "ajv/dist/2020.js";
 import errors from "ajv-errors";
@@ -30,7 +30,6 @@ ajv.removeSchema();
 
 // process
 const locales = Object.keys(ftlLocalize).filter((key) => key !== "transpile");
-const ajvErrors = {};
 const ftlErrors = {};
 for (const locale of locales) {
 	ftlErrors[locale] = JSON.parse(JSON.stringify(validate.errors));
