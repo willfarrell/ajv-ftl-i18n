@@ -1,58 +1,93 @@
 {
-  "name": "ajv-ftl-i18n",
-  "version": "0.1.1",
-  "description": "Transpile Fluent (ftl) files into ajv error translations.",
-  "main": "index.js",
-  "type": "module",
-  "bin": {
-    "ajv-ftl": "cli.js"
-  },
-  "files": [
-    "cli.js",
-    "commands/*.js",
-    "index.js",
-    "transpile.js",
-    "locale/*.js"
-  ],
-  "scripts": {
-    "build": "./bin/build",
-    "test": "npm run build && npm run test:unit",
-    "test:unit": "c8 node --test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/willfarrell/ajv-ftl-i18n.git"
-  },
-  "keywords": [
-    "Fluent",
-    "@fluent",
-    "ftl",
-    "localization",
-    "l10n",
-    "internationalization",
-    "i18n",
-    "ast",
-    "compiler",
-    "transpiler"
-  ],
-  "author": "willfarrell",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/willfarrell/ajv-ftl-i18n/issues"
-  },
-  "homepage": "https://github.com/willfarrell/ajv-ftl-i18n",
-  "dependencies": {
-    "commander": "10.0.0",
-    "fluent-transpiler": "0.2.1"
-  },
-  "devDependencies": {
-    "ajv": "^8.12.0",
-    "ajv-errors": "^3.0.0",
-    "ajv-formats": "^2.1.1",
-    "c8": "^7.12.0"
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/willfarrell"
-  }
+	"name": "ajv-ftl-i18n",
+	"version": "0.2.0",
+	"description": "Transpile Fluent (ftl) files into ajv error translations.",
+	"main": "index.js",
+	"type": "module",
+	"engines": {
+		"node": ">=24"
+	},
+	"engineStrict": true,
+	"bin": {
+		"ajv-ftl": "cli.js"
+	},
+	"files": [
+		"cli.js",
+		"commands/*.js",
+		"index.js",
+		"transpile.js",
+		"locale/*.js",
+		"locale/*.d.ts"
+	],
+	"scripts": {
+		"prepare": "husky",
+		"git:pre-commit": "npm run git:lint-staged && npm run git:test-staged",
+		"git:commit-msg": "commitlint --config commitlint.config.cjs --edit",
+		"git:lint-staged": "npm run test:lint",
+		"git:unit-staged": "node --test",
+		"git:test-staged": "npm run git:unit-staged",
+		"build": "./bin/build",
+		"lint": "biome check --write --no-errors-on-unmatched",
+		"test": "npm run test:lint && npm run build && npm run test:unit && npm run test:types && npm run test:sast && npm run test:perf && npm run test:dast",
+		"test:lint": "biome check --staged --no-errors-on-unmatched",
+		"test:unit": "node --test --test-force-exit --experimental-test-coverage --test-coverage-lines=95 --test-coverage-branches=70 --test-coverage-functions=80 --test-coverage-exclude=locale/** --test-coverage-exclude=**/*.test.js --test-coverage-exclude=test/** ./test/*.js ./*.test.js",
+		"test:types": "tstyche",
+		"test:perf": "node --test --test-concurrency=1 ./*.perf.js",
+		"test:sast": "npm run test:sast:license && npm run test:sast:lockfile && npm run test:sast:semgrep && npm run test:sast:trufflehog && npm run test:sast:trivy",
+		"test:sast:license": "license-check-and-add check -f license.json",
+		"test:sast:lockfile": "lockfile-lint --path package-lock.json --type npm --allowed-hosts npm --validate-https",
+		"test:sast:semgrep": "semgrep scan --config auto",
+		"test:sast:trivy": "trivy fs --scanners vuln,license --include-dev-deps --ignored-licenses 0BSD,Apache-2.0,BSD-1-Clause,BSD-2-Clause,BSD-3-Clause,CC0-1.0,CC-BY-4.0,ISC,MIT,Python-2.0 --exit-code 1 --disable-telemetry .",
+		"test:sast:trufflehog": "trufflehog filesystem --only-verified --log-level=-1 ./",
+		"test:dast": "npm run test:dast:fuzz",
+		"test:dast:fuzz": "node --test ./*.fuzz.js",
+		"release:license:add": "license-check-and-add add -f license.json",
+		"release:license:remove": "license-check-and-add remove -f license.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/willfarrell/ajv-ftl-i18n.git"
+	},
+	"keywords": [
+		"Fluent",
+		"@fluent",
+		"ftl",
+		"localization",
+		"l10n",
+		"internationalization",
+		"i18n",
+		"ast",
+		"compiler",
+		"transpiler"
+	],
+	"author": "willfarrell",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/willfarrell/ajv-ftl-i18n/issues"
+	},
+	"homepage": "https://github.com/willfarrell/ajv-ftl-i18n",
+	"dependencies": {
+		"commander": "14.0.3",
+		"fluent-transpiler": "0.3.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.0.0",
+		"@commitlint/cli": "^20.0.0",
+		"@commitlint/config-conventional": "^20.0.0",
+		"ajv": "^8.18.0",
+		"ajv-errors": "^3.0.0",
+		"ajv-formats": "^3.0.1",
+		"fast-check": "^4.6.0",
+		"husky": "^9.0.0",
+		"license-check-and-add": "4.0.5",
+		"tinybench": "^6.0.0",
+		"tstyche": "^6.2.0"
+	},
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/willfarrell"
+	},
+	"workspaces": [
+		".github"
+	]
 }

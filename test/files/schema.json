@@ -1,225 +1,233 @@
 {
-  "$id": "http://example.org/schemas/default.json",
-  "type":"object",
-  "properties":{
-    "additionalItems":{
-      "description":"Deprecated in Draft 2020-12, see `items`",
-      "type":"array",
-      "prefixItems": [{
-        "type":"number"
-      }],
-      "items":false
-    },
-    "additionalProperties": {
-      "additionalProperties": false,
-      "type":"object",
-      "properties":{}
-    },
-    "anyOf":{
-      "type":"string",
-      "anyOf":[{
-        "type":"string"
-      }]  
-    },
-    "const":{
-      "const":"null"
-    },
-    "contains":{
-      "type":"array",
-      "contains":{
-        "type":"number"
-      }
-    },
-    "dependencies":{
-      "dependencies":{
-        "a":["b"]
-      },
-      "type":"object",
-      "properties":{}
-    },
-    "dependentRequired":{
-      "dependentRequired": {
-        "a":["b"]
-      },
-      "type":"object",
-      "properties":{}
-    },
-    "dependentSchemas":{
-      "description":"TODO Needs failing example",
-      "dependentSchemas": {
-        "a": {
-          "properties":{
-            "b": {
-              "type":"string"
-            }
-          }
-        }
-      },
-      "type":"object",
-      "properties":{}
-    },
-    "discriminator":{
-      "description":"TODO Needs failing example"
-    },
-    "discriminatorTag":{
-      "description":"TODO Needs failing example"
-    },
-    "discriminatorMapping":{
-      "description":"TODO Needs failing example"
-    },
-    "enum":{
-      "type":"string",
-      "enum":["1"]
-    },
-    "format":{
-      "type":"string",
-      "format":"date"
-    },
-    "formatMaximum":{
-      "description":"TODO Needs failing example",
-      "type":"string",
-      "format":"date",
-      "formatMaximum":"2001-01-01"
-    },
-    "formatExclusiveMaximum":{
-      "description":"TODO Needs failing example",
-      "type":"string",
-      "format":"date",
-      "formatExclusiveMaximum":"2001-01-01"
-    },
-    "formatMinimum":{
-      "description":"TODO Needs failing example",
-      "type":"string",
-      "format":"date",
-      "formatMinimum":"2001-01-01"
-    },
-    "formatExclusiveMinimum":{
-      "description":"TODO Needs failing example",
-      "type":"string",
-      "format":"date",
-      "formatExclusiveMinimum":"2001-01-01"
-    },
-    "if":{
-      "if": {
-        "type":"boolean"
-      },
-      "then":{
-        "enum":[true]
-      }
-    },
-    "items": {
-      "type":"array",
-      "prefixItems": [{
-        "type":"number"
-      }],
-      "items":false
-    },
-    "maximum":{
-      "type":"integer",
-      "maximum":1
-    },
-    "exclusiveMaximum":{
-      "type":"integer",
-      "exclusiveMaximum":1
-    },
-    "maxContains":{
-      "description":"TODO Needs failing example",
-      "type":"array",
-      "contains":{
-        "type":"number"
-      },
-      "maxContains":1
-    },
-    "maxItems":{
-      "type":"array",
-      "maxItems":1
-    },
-    "maxLength":{
-      "type":"string",
-      "maxLength":1
-    },
-    "maxProperties":{
-      "type":"object",
-      "maxProperties":1
-    },
-    "minimum":{
-      "type":"integer",
-      "minimum":1
-    },
-    "exclusiveMinimum":{
-      "type":"integer",
-      "exclusiveMinimum":1
-    },
-    "minContains":{
-      "description":"TODO Needs failing example",
-      "type":"array",
-      "contains":{
-        "type":"number"
-      },
-      "minContains":1
-    },
-    "minItems":{
-      "type":"array",
-      "minItems":1
-    },
-    "minLength":{
-      "type":"string",
-      "minLength":1
-    },
-    "minProperties":{
-      "type":"object",
-      "minProperties":1
-    },
-    "multipleOf":{
-      "type": "number",
-      "multipleOf" : 2
-    },
-    "not":{
-      "not":{
-        "type":"boolean"
-      }
-    },
-    "oneOf":{
-      "type":"string",
-      "oneOf":[{
-        "enum":["1"]
-      }]  
-    },
-    "pattern":{
-      "type":"string",
-      "pattern":"^.+$"
-    },
-    "propertyNames":{
-      "propertyNames": {
-        "pattern":"^b$"
-      },
-      "type":"object",
-      "properties":{}
-    },
-    "required":{
-      "required":["a"],
-      "type":"object",
-      "properties":{}
-    },
-    "type":{
-      "type":"null"
-    },
-    "unevaluatedItems":{
-      "description":"TODO Needs failing example",
-      "type":"array",
-      "contains":{
-        "type":"number"
-      },
-      "unevaluatedItems": {
-        "type":"boolean"
-      }
-    },
-    "unevaluatedProperties":{
-      "description":"TODO Needs failing example"
-    },
-    "uniqueItems":{
-      "type": "array",
-      "uniqueItems": true
-    }
-  }
+	"$id": "http://example.org/schemas/default.json",
+	"type": "object",
+	"properties": {
+		"additionalItems": {
+			"description": "Deprecated in Draft 2020-12, see `items`",
+			"type": "array",
+			"prefixItems": [
+				{
+					"type": "number"
+				}
+			],
+			"items": false
+		},
+		"additionalProperties": {
+			"additionalProperties": false,
+			"type": "object",
+			"properties": {}
+		},
+		"anyOf": {
+			"type": "string",
+			"anyOf": [
+				{
+					"type": "string"
+				}
+			]
+		},
+		"const": {
+			"const": "null"
+		},
+		"contains": {
+			"type": "array",
+			"contains": {
+				"type": "number"
+			}
+		},
+		"dependencies": {
+			"dependencies": {
+				"a": ["b"]
+			},
+			"type": "object",
+			"properties": {}
+		},
+		"dependentRequired": {
+			"dependentRequired": {
+				"a": ["b"]
+			},
+			"type": "object",
+			"properties": {}
+		},
+		"dependentSchemas": {
+			"description": "TODO Needs failing example",
+			"dependentSchemas": {
+				"a": {
+					"properties": {
+						"b": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"type": "object",
+			"properties": {}
+		},
+		"discriminator": {
+			"description": "TODO Needs failing example"
+		},
+		"discriminatorTag": {
+			"description": "TODO Needs failing example"
+		},
+		"discriminatorMapping": {
+			"description": "TODO Needs failing example"
+		},
+		"enum": {
+			"type": "string",
+			"enum": ["1"]
+		},
+		"format": {
+			"type": "string",
+			"format": "date"
+		},
+		"formatMaximum": {
+			"description": "TODO Needs failing example",
+			"type": "string",
+			"format": "date",
+			"formatMaximum": "2001-01-01"
+		},
+		"formatExclusiveMaximum": {
+			"description": "TODO Needs failing example",
+			"type": "string",
+			"format": "date",
+			"formatExclusiveMaximum": "2001-01-01"
+		},
+		"formatMinimum": {
+			"description": "TODO Needs failing example",
+			"type": "string",
+			"format": "date",
+			"formatMinimum": "2001-01-01"
+		},
+		"formatExclusiveMinimum": {
+			"description": "TODO Needs failing example",
+			"type": "string",
+			"format": "date",
+			"formatExclusiveMinimum": "2001-01-01"
+		},
+		"if": {
+			"if": {
+				"type": "boolean"
+			},
+			"then": {
+				"enum": [true]
+			}
+		},
+		"items": {
+			"type": "array",
+			"prefixItems": [
+				{
+					"type": "number"
+				}
+			],
+			"items": false
+		},
+		"maximum": {
+			"type": "integer",
+			"maximum": 1
+		},
+		"exclusiveMaximum": {
+			"type": "integer",
+			"exclusiveMaximum": 1
+		},
+		"maxContains": {
+			"description": "TODO Needs failing example",
+			"type": "array",
+			"contains": {
+				"type": "number"
+			},
+			"maxContains": 1
+		},
+		"maxItems": {
+			"type": "array",
+			"maxItems": 1
+		},
+		"maxLength": {
+			"type": "string",
+			"maxLength": 1
+		},
+		"maxProperties": {
+			"type": "object",
+			"maxProperties": 1
+		},
+		"minimum": {
+			"type": "integer",
+			"minimum": 1
+		},
+		"exclusiveMinimum": {
+			"type": "integer",
+			"exclusiveMinimum": 1
+		},
+		"minContains": {
+			"description": "TODO Needs failing example",
+			"type": "array",
+			"contains": {
+				"type": "number"
+			},
+			"minContains": 1
+		},
+		"minItems": {
+			"type": "array",
+			"minItems": 1
+		},
+		"minLength": {
+			"type": "string",
+			"minLength": 1
+		},
+		"minProperties": {
+			"type": "object",
+			"minProperties": 1
+		},
+		"multipleOf": {
+			"type": "number",
+			"multipleOf": 2
+		},
+		"not": {
+			"not": {
+				"type": "boolean"
+			}
+		},
+		"oneOf": {
+			"type": "string",
+			"oneOf": [
+				{
+					"enum": ["1"]
+				}
+			]
+		},
+		"pattern": {
+			"type": "string",
+			"pattern": "^.+$"
+		},
+		"propertyNames": {
+			"propertyNames": {
+				"pattern": "^b$"
+			},
+			"type": "object",
+			"properties": {}
+		},
+		"required": {
+			"required": ["a"],
+			"type": "object",
+			"properties": {}
+		},
+		"type": {
+			"type": "null"
+		},
+		"unevaluatedItems": {
+			"description": "TODO Needs failing example",
+			"type": "array",
+			"contains": {
+				"type": "number"
+			},
+			"unevaluatedItems": {
+				"type": "boolean"
+			}
+		},
+		"unevaluatedProperties": {
+			"description": "TODO Needs failing example"
+		},
+		"uniqueItems": {
+			"type": "array",
+			"uniqueItems": true
+		}
+	}
 }
