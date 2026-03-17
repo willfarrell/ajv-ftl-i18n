@@ -16,7 +16,8 @@
 		"commands/*.js",
 		"index.js",
 		"transpile.js",
-		"locale/*.js"
+		"locale/*.js",
+		"locale/*.d.ts"
 	],
 	"scripts": {
 		"prepare": "husky",
