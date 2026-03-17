@@ -1,5 +1,3 @@
-// Copyright 2026 will Farrell, and ajv-ftl-i18n contributors.
-// SPDX-License-Identifier: MIT
 import { deepEqual, notDeepEqual, notEqual } from "node:assert";
 import { readFile, writeFile } from "node:fs/promises";
 import test from "node:test";

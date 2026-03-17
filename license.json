@@ -20,6 +20,7 @@
 		"**/*.fuzz.js",
 		"**/*.perf.js",
 		"**/*.test.js",
+		"test/*",
 		"**/*.md",
 		"**/*.yml",
 		"bin/*",
