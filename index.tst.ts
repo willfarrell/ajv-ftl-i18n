@@ -5,7 +5,7 @@ import ajvFtlI18n, { transpile } from "./index.js";
 
 describe("index", () => {
 	test("default export should be an object", () => {
-		expect(ajvFtlI18n).type.not.toBeUndefined();
+		expect(ajvFtlI18n).type.not.toBe<undefined>();
 	});
 
 	test("default export should have transpile function", () => {
@@ -13,16 +13,16 @@ describe("index", () => {
 	});
 
 	test("transpile should be a function", () => {
-		expect(transpile).type.not.toBeUndefined();
-		expect(transpile("ftl content", {})).type.toBeAny();
+		expect(transpile).type.not.toBe<undefined>();
+		expect(transpile("ftl content", {})).type.toBe<any>();
 	});
 
 	test("default export should have locale keys", () => {
-		expect(ajvFtlI18n.en).type.not.toBeUndefined();
-		expect(ajvFtlI18n.ar).type.not.toBeUndefined();
-		expect(ajvFtlI18n.de).type.not.toBeUndefined();
-		expect(ajvFtlI18n.fr).type.not.toBeUndefined();
-		expect(ajvFtlI18n.ja).type.not.toBeUndefined();
-		expect(ajvFtlI18n.zh).type.not.toBeUndefined();
+		expect(ajvFtlI18n.en).type.not.toBe<undefined>();
+		expect(ajvFtlI18n.ar).type.not.toBe<undefined>();
+		expect(ajvFtlI18n.de).type.not.toBe<undefined>();
+		expect(ajvFtlI18n.fr).type.not.toBe<undefined>();
+		expect(ajvFtlI18n.ja).type.not.toBe<undefined>();
+		expect(ajvFtlI18n.zh).type.not.toBe<undefined>();
 	});
 });
