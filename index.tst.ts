@@ -14,7 +14,7 @@ describe("index", () => {
 
 	test("transpile should be a function", () => {
 		expect(transpile).type.not.toBe<undefined>();
-		expect(transpile("ftl content", {})).type.toBe<any>();
+		expect(transpile("ftl content", {})).type.toBe<string>();
 	});
 
 	test("default export should have locale keys", () => {
