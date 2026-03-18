@@ -56,7 +56,7 @@ for (const locale of locales) {
 //console.log(counts)
 
 // errorMessages
-test(`Should translate errorMessage`, async (t) => {
+test(`Should translate errorMessage`, async () => {
 	const schema = {
 		type: "object",
 		required: ["foo"],
@@ -73,7 +73,7 @@ test(`Should translate errorMessage`, async (t) => {
 	deepEqual(validate.errors[0].message, 'must match a schema in "anyOf"');
 });
 
-test(`Should translate errorMessage with templates`, async (t) => {
+test(`Should translate errorMessage with templates`, async () => {
 	const schema = {
 		type: "object",
 		properties: {
@@ -87,6 +87,7 @@ test(`Should translate errorMessage with templates`, async (t) => {
 		},
 		errorMessage: {
 			properties: {
+				// biome-ignore lint/suspicious/noTemplateCurlyInString: intentional schema value syntax
 				height: "uniqueItems, j:${/height}, i:${/width}",
 			},
 		},

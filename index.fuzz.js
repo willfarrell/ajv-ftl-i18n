@@ -15,7 +15,7 @@ test("fuzz: transpile with random FTL-like input should not throw unexpectedly",
 			(options, ftl) => {
 				try {
 					transpile(ftl, options);
-				} catch (e) {
+				} catch {
 					// Expected errors from invalid FTL are OK
 				}
 			},
@@ -29,7 +29,7 @@ test("fuzz: transpile with random strings should not crash", () => {
 		fc.property(fc.string({ maxLength: 200 }), (ftl) => {
 			try {
 				transpile(ftl, { locale: ["en"] });
-			} catch (e) {
+			} catch {
 				// Expected
 			}
 		}),
