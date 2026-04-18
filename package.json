@@ -29,7 +29,7 @@
 		"build": "./bin/build",
 		"lint": "biome check --write --no-errors-on-unmatched",
 		"test": "npm run test:lint && npm run build && npm run test:unit && npm run test:types && npm run test:sast && npm run test:perf && npm run test:dast",
-		"test:lint": "biome check --no-errors-on-unmatched",
+		"test:lint": "biome ci --no-errors-on-unmatched",
 		"test:lint:staged": "biome check --staged --no-errors-on-unmatched",
 		"test:unit": "node --test --test-force-exit --experimental-test-coverage --test-coverage-lines=95 --test-coverage-branches=70 --test-coverage-functions=80 --test-coverage-exclude=locale/** --test-coverage-exclude=**/*.test.js --test-coverage-exclude=test/** ./test/*.js ./*.test.js",
 		"test:types": "tstyche",
