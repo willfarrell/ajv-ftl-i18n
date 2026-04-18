@@ -28,6 +28,7 @@
 		"git:test-staged": "npm run git:unit-staged",
 		"build": "./bin/build",
 		"lint": "biome check --write --no-errors-on-unmatched",
+		"pretest": "npm run build",
 		"test": "npm run test:lint && npm run build && npm run test:unit && npm run test:types && npm run test:sast && npm run test:perf && npm run test:dast",
 		"test:lint": "biome check --staged --no-errors-on-unmatched",
 		"test:unit": "node --test --test-force-exit --experimental-test-coverage --test-coverage-lines=95 --test-coverage-branches=70 --test-coverage-functions=80 --test-coverage-exclude=locale/** --test-coverage-exclude=**/*.test.js --test-coverage-exclude=test/** ./test/*.js ./*.test.js",
