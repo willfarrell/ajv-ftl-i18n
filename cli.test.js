@@ -52,6 +52,16 @@ test("cli: missing input file should error", async () => {
 	}
 });
 
+test("cli: directory as input should error", async () => {
+	try {
+		await execFileAsync("node", [cli, "locale", "--locale", "en"]);
+		ok(false, "should have thrown");
+	} catch (e) {
+		ok(e.status !== 0 || e.stderr.length > 0, "should exit with error");
+		match(e.stderr, /is not a file/, "should report non-file input");
+	}
+});
+
 test("cli: --help", async () => {
 	const { stdout } = await execFileAsync("node", [cli, "--help"]);
 	match(stdout, /transpile/i, "help should mention transpile");
