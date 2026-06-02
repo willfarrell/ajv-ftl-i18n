@@ -12,6 +12,7 @@ const Ajv = _ajv.default; // esm workaround for linting
 const ajv = new Ajv({
 	allErrors: true,
 	messages: true, // must be true for errorMessages
+	strictTuples: false, // schema.json uses prefixItems 1-tuples intentionally
 	//uriResolver,
 	keywords: [],
 });

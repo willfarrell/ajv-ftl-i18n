@@ -32,7 +32,16 @@ test("transpile: caller options override defaults", () => {
 });
 
 test("transpile: restores console.error after running", () => {
-	const original = console.error;
-	transpile("foo = Bar baz\n");
-	strictEqual(console.error, original, "console.error must be restored");
+	const before = console.error;
+	// Use a sentinel rather than the ambient console.error so the assertion holds
+	// independently of test order: it must be restored to exactly what it was on
+	// entry, which fails if the restoring `finally` block is removed.
+	const sentinel = () => {};
+	console.error = sentinel;
+	try {
+		transpile("foo = Bar baz\n");
+		strictEqual(console.error, sentinel, "console.error must be restored");
+	} finally {
+		console.error = before;
+	}
 });
