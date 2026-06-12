@@ -105,5 +105,10 @@ dist
 # TernJS port file
 .tern-port
 
+# Mutation testing (StrykerJS)
+test-mutation-results.html
+test-mutation-results.json
+stryker.log
+
 # OS
 .DS_Store

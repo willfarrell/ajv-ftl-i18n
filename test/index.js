@@ -1,4 +1,4 @@
-import { deepEqual } from "node:assert";
+import { deepEqual, doesNotMatch, ok } from "node:assert";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import _ajv from "ajv/dist/2020.js";
@@ -12,6 +12,7 @@ const Ajv = _ajv.default; // esm workaround for linting
 const ajv = new Ajv({
 	allErrors: true,
 	messages: true, // must be true for errorMessages
+	strictTuples: false, // schema.json uses prefixItems 1-tuples intentionally
 	//uriResolver,
 	keywords: [],
 });
@@ -37,23 +38,21 @@ for (const locale of locales) {
 }
 
 // tests
-// const counts = {}
-// for (let i = 0, l = validate.errors.length; i < l; i++) {
-//   const keyword = validate.errors[i].keyword
-//
-//   if (counts[keyword]) continue
-//
-//   for (const locale of locales) {
-//     test(`Should translate "${i}-${keyword}" (${locale})`, async (t) => {
-//       if (locale !== 'en') {
-//         notDeepEqual(ftlErrors[locale][i].message, ftlErrors['en'][i].message)
-//       }
-//     })
-//   }
-//
-//   counts[keyword] ??= true
-// }
-//console.log(counts)
+for (const locale of locales) {
+	test(`Should localize every error (${locale})`, async () => {
+		for (const error of ftlErrors[locale]) {
+			ok(
+				typeof error.message === "string" && error.message.length > 0,
+				`"${error.keyword}" should have a message`,
+			);
+			doesNotMatch(
+				error.message,
+				/undefined|NaN/,
+				`"${error.keyword}" should have all params interpolated`,
+			);
+		}
+	});
+}
 
 // errorMessages
 test(`Should translate errorMessage`, async () => {
@@ -99,5 +98,35 @@ test(`Should translate errorMessage with templates`, async () => {
 	deepEqual(
 		validate.errors[0].message,
 		"must not have duplicate items (items ## -2 and 4, 000 are identical)",
+	);
+});
+
+test(`Should parse multiple quoted JSON-pointer values`, async () => {
+	const errors = [
+		{
+			keyword: "errorMessage",
+			message: 'uniqueItems, j:"a, b", i:"c d"',
+			params: {},
+		},
+	];
+	ftlLocalize.en(errors);
+	deepEqual(
+		errors[0].message,
+		"must not have duplicate items (items ## a, b and c d are identical)",
+	);
+});
+
+test(`Should parse JSON-pointer values containing colons`, async () => {
+	const errors = [
+		{
+			keyword: "errorMessage",
+			message: 'uniqueItems, j:"12:30", i:5',
+			params: {},
+		},
+	];
+	ftlLocalize.en(errors);
+	deepEqual(
+		errors[0].message,
+		"must not have duplicate items (items ## 12:30 and 5 are identical)",
 	);
 });

@@ -41,7 +41,7 @@ A drop in replacement for [`ajv-i18n`](https://ajv.js.org/packages/ajv-i18n.html
 ## Install
 
 ```bash
-npm i -D ajv-ftl-i18n
+npm i ajv-ftl-i18n
 ```
 
 ## Usage
@@ -53,7 +53,7 @@ import errorMessage from 'ajv-errors'
 
 const Ajv = _ajv.default // esm workaround
 
-const ajv = Ajv({
+const ajv = new Ajv({
   allErrors: true,
   messages: true // must be `true` for `errorMessages` support
 })
@@ -68,6 +68,14 @@ if (!valid) {
 }
 ```
 
+Only need one locale? Import it directly to keep bundles small:
+
+```javascript
+import fr from 'ajv-ftl-i18n/locale/fr.js'
+
+fr(validate.errors)
+```
+
 ## Transpile
 
 Used to transpile custom ftl files into ajv localizations.
@@ -80,9 +88,10 @@ Usage: ajv-ftl [options] <input>
 Transpile Fluent (.ftl) files to JavaScript (.js or .mjs) for ajv
 
 Arguments:
-  input                  Path to the Fluent file to compile
+  input                  Path to the Fluent file to transpile
 
 Options:
+  --version              output the version number
   --locale <locale...>   What locale(s) to be used. Multiple can be set to allow for fallback. i.e. en-CA
   -o, --output <output>  Path to store the resulting JavaScript file. Will be in ESM.
   -h, --help             display help for command
