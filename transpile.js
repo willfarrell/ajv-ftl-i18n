@@ -11,10 +11,9 @@ const exportDefault = `(errors) => {
     let values = {}
     if (keyword === 'errorMessage') {
       const [message, ...valuesPairs] = e.message.split(', ')
-      ;(valuesPairs.join(', ').match(regExpJsonPointerPairs) ?? []).forEach(pair => {
-        const [key, value] = pair.split(':')
+      for (const [, key, value] of valuesPairs.join(', ').matchAll(regExpJsonPointerPairs)) {
         values[key] = value.replace(regExpJsonPointerQuote, '')
-      })
+      }
       source ??= __exports[message] ?? __exports['_'+message] ?? e.message
     } else {
       source ??= __exports.defaultMessage
@@ -26,7 +25,7 @@ const exportDefault = `(errors) => {
     }
   }
 }
-const regExpJsonPointerPairs = /([a-zA-Z0-9_-]+):(".*"|[^,"]+)/g
+const regExpJsonPointerPairs = /([a-zA-Z0-9_-]+):("[^"]*"|[^,"]+)/g
 const regExpJsonPointerQuote = /(^"|"$)/g
 `;
 

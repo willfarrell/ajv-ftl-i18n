@@ -3,11 +3,21 @@
 	"version": "0.2.1",
 	"description": "Transpile Fluent (ftl) files into ajv error translations.",
 	"main": "index.js",
+	"types": "index.d.ts",
 	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./index.d.ts",
+			"default": "./index.js"
+		},
+		"./locale/*.js": "./locale/*.js",
+		"./locale/*.ftl": "./locale/*.ftl",
+		"./package.json": "./package.json"
+	},
 	"engines": {
 		"node": ">=24"
 	},
-	"engineStrict": true,
 	"bin": {
 		"ajv-ftl": "cli.js"
 	},
@@ -16,22 +26,25 @@
 		"commands/*.js",
 		"program.js",
 		"index.js",
+		"index.d.ts",
 		"transpile.js",
+		"transpile.d.ts",
 		"locale/*.js",
-		"locale/*.d.ts"
+		"locale/*.d.ts",
+		"locale/*.ftl"
 	],
 	"scripts": {
 		"prepare": "husky",
 		"prepack": "npm run build",
 		"git:pre-commit": "npm run git:lint-staged && npm run git:test-staged",
 		"git:commit-msg": "commitlint --config commitlint.config.cjs --edit",
-		"git:lint-staged": "npm run test:lint",
+		"git:lint-staged": "biome check --staged --no-errors-on-unmatched",
 		"git:unit-staged": "node --test",
 		"git:test-staged": "npm run git:unit-staged",
 		"build": "./bin/build",
 		"lint": "biome check --write --no-errors-on-unmatched",
 		"test": "npm run test:lint && npm run build && npm run test:unit && npm run test:mutation && npm run test:types && npm run test:sast && npm run test:perf && npm run test:dast",
-		"test:lint": "biome check --staged --no-errors-on-unmatched",
+		"test:lint": "biome ci --no-errors-on-unmatched",
 		"test:unit": "node --test --test-force-exit --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-exclude=locale/** --test-coverage-exclude=**/*.test.js --test-coverage-exclude=test/** ./test/*.js ./*.test.js",
 		"test:mutation": "stryker run",
 		"test:types": "tstyche",
@@ -89,7 +102,7 @@
 		"@stryker-mutator/core": "^9.0.0",
 		"ajv": "^8.18.0",
 		"ajv-errors": "^3.0.0",
-		"ajv-formats": "^3.0.0",
+		"ajv-formats": "^3.0.1",
 		"fast-check": "^4.6.0",
 		"husky": "^9.0.0",
 		"license-check-and-add": "4.0.5",

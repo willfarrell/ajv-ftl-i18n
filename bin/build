@@ -1,24 +1,27 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 srcDir=./locale/
 destDir=./locale/
 
-function buildFile {
-  LOCALE=$(basename ${2%.js})
-  
-  ./cli.js ${1} --output ${2} --locale ${LOCALE}
+writeTypes() {
+	cat > "${1}" <<'EOF'
+declare const localize: (
+	errors:
+		| Array<{
+				keyword: string;
+				message?: string;
+				params?: Record<string, unknown>;
+		  }>
+		| null
+		| undefined,
+) => void;
+export default localize;
+EOF
 }
 
-function buildDir {
-  INPUT=$1
-  OUTPUT=$2
-  mkdir -p $OUTPUT
-  
-  for file in ${INPUT}*.ftl; do
-    file_output=${file%.ftl}.js
-    buildFile ${file} ${file_output/${INPUT}/${OUTPUT}}
-  done
-}
-
-buildDir ${srcDir} ${destDir}
+for file in "${srcDir}"*.ftl; do
+	locale="$(basename "${file%.ftl}")"
+	node cli.js "${file}" --output "${destDir}${locale}.js" --locale "${locale}"
+	writeTypes "${destDir}${locale}.d.ts"
+done

@@ -10,16 +10,30 @@ const fileExists = async (filepath) => {
 	}
 };
 
-export default async (input, options) => {
-	await fileExists(input);
+// fluent-transpiler attaches the Fluent parser annotations on `cause.data`.
+const formatError = (error) => {
+	const { data } = error.cause ?? {};
+	const annotations = data?.annotations ?? [];
+	return [
+		error.message,
+		...annotations.map(
+			(a) => `[${a.code}] ${a.message} (offset ${a.span.start})`,
+		),
+	].join("\n");
+};
 
-	const ftl = await readFile(input, { encoding: "utf8" });
-
-	const js = transpile(ftl, options);
-	if (options.output) {
-		await writeFile(options.output, js, "utf8");
-	} else {
-		console.log(js);
+export default async (input, options, command) => {
+	try {
+		await fileExists(input);
+		const ftl = await readFile(input, { encoding: "utf8" });
+		const js = transpile(ftl, options);
+		if (options.output) {
+			await writeFile(options.output, js);
+		} else {
+			console.log(js);
+		}
+		return js;
+	} catch (error) {
+		command.error(formatError(error));
 	}
-	return js;
 };

@@ -2,14 +2,15 @@
 // SPDX-License-Identifier: MIT
 import { Command, Option } from "commander";
 import transpile from "./commands/transpile.js";
+import packageJson from "./package.json" with { type: "json" };
 
 export const createProgram = () => {
 	const program = new Command()
 		.name("ajv-ftl")
 		.description(
 			"Transpile Fluent (.ftl) files to JavaScript (.js or .mjs) for ajv",
-		);
-	//.version(package.version)
+		)
+		.version(packageJson.version, "--version");
 
 	program
 		.command("transpile", { isDefault: true })

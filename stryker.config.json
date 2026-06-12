@@ -3,10 +3,10 @@
 	"packageManager": "npm",
 	"testRunner": "command",
 	"commandRunner": {
-		"command": "chmod +x cli.js && npm run build && node --test --test-force-exit ./test/*.js ./*.test.js"
+		"command": "npm run build && node --test --test-force-exit ./test/*.js ./*.test.js"
 	},
 	"coverageAnalysis": "off",
-	"mutate": ["program.js", "index.js", "transpile.js"],
+	"mutate": ["program.js", "index.js", "transpile.js", "commands/transpile.js"],
 	"reporters": ["progress", "clear-text"],
 	"thresholds": {
 		"high": 100,

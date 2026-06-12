@@ -1,7 +1,7 @@
 // Copyright 2026 will Farrell, and ajv-ftl-i18n contributors.
 // SPDX-License-Identifier: MIT
 import { match, ok, rejects } from "node:assert";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -80,7 +80,40 @@ test("cli: missing required <input> argument should error", async () => {
 });
 
 test("cli: missing input file should error", async () => {
-	await rejects(run(["nonexistent.ftl", "--locale", "en"]));
+	await rejects(
+		run(["nonexistent.ftl", "--locale", "en"]),
+		/ENOENT/,
+		"should surface the file system error message",
+	);
+});
+
+test("cli: invalid FTL reports the parser annotations", async () => {
+	const dir = await mkdtemp(join(tmpdir(), "ajv-ftl-"));
+	const input = join(dir, "bad.ftl");
+	await writeFile(input, "this is not valid ftl {{{");
+	try {
+		await rejects(
+			run([input, "--locale", "en"]),
+			/Junk found\n\[E0003\] Expected token: "=" \(offset 5\)/,
+			"should report the error with its Fluent annotation, one per line",
+		);
+	} finally {
+		await rm(dir, { recursive: true, force: true });
+	}
+});
+
+test("cli: --version prints the package version", async () => {
+	const { version } = JSON.parse(await readFile("./package.json", "utf8"));
+	await rejects(
+		run(["--version"]),
+		(error) => error.message === version,
+		"should report the version from package.json",
+	);
+	await rejects(
+		run(["-V"]),
+		(error) => error.message !== version,
+		"should not register a short version flag",
+	);
 });
 
 test("cli: directory as input should error", async () => {

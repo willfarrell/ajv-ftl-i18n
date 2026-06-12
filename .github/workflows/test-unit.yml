@@ -2,6 +2,8 @@ name: Tests (unit)
 
 on:
   pull_request:
+  push:
+    branches: [main, develop]
 
 env:
   NODE_VERSION: 24.x
