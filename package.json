@@ -109,7 +109,10 @@
 		"tinybench": "^6.0.0",
 		"tstyche": "^7.0.0"
 	},
-	"overrides": {},
+	"overrides": {
+		"js-yaml": ">=4.2.0",
+		"qs": ">=6.15.2"
+	},
 	"funding": {
 		"type": "github",
 		"url": "https://github.com/sponsors/willfarrell"
