@@ -109,9 +109,7 @@
 		"tinybench": "^6.0.0",
 		"tstyche": "^7.0.0"
 	},
-	"overrides": {
-		"qs": "^6.15.2"
-	},
+	"overrides": {},
 	"funding": {
 		"type": "github",
 		"url": "https://github.com/sponsors/willfarrell"
