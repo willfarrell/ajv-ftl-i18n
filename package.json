@@ -96,18 +96,18 @@
 		"fluent-transpiler": "0.6.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.0.0",
-		"@commitlint/cli": "^21.0.0",
-		"@commitlint/config-conventional": "^21.0.0",
-		"@stryker-mutator/core": "^9.0.0",
-		"ajv": "^8.18.0",
+		"@biomejs/biome": "^2.5.3",
+		"@commitlint/cli": "^21.2.1",
+		"@commitlint/config-conventional": "^21.2.0",
+		"@stryker-mutator/core": "^9.6.1",
+		"ajv": "^8.20.0",
 		"ajv-errors": "^3.0.0",
 		"ajv-formats": "^3.0.1",
-		"fast-check": "^4.6.0",
-		"husky": "^9.0.0",
+		"fast-check": "^4.9.0",
+		"husky": "^9.1.7",
 		"license-check-and-add": "4.0.5",
-		"tinybench": "^6.0.0",
-		"tstyche": "^7.0.0"
+		"tinybench": "^6.0.2",
+		"tstyche": "^7.2.1"
 	},
 	"overrides": {
 		"js-yaml": ">=4.2.0",
