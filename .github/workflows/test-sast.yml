@@ -165,7 +165,7 @@ jobs:
         with:
           persist-credentials: false
       - name: actionlint
-        uses: raven-actions/actionlint@205b530c5d9fa8f44ae9ed59f341a0db994aa6f8 # v2.1.2
+        uses: raven-actions/actionlint@3d39aea434753780c3b3d4a1a31c854b4dbf49d7 # v2.2.0
 
   # https://github.com/zizmorcore/zizmor-action
   zizmor:
@@ -205,7 +205,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - name: TruffleHog
-        uses: trufflesecurity/trufflehog@30d5bb91af1a771378349dbbb0c82129392acf70 # v3.95.6
+        uses: trufflesecurity/trufflehog@f446421baf832d6356c42c1743d99abff52ff334 # v3.95.7
         with:
           extra_args: --only-verified --results=verified,unknown
 
