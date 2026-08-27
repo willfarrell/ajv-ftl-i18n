@@ -93,7 +93,7 @@
 	"homepage": "https://github.com/willfarrell/ajv-ftl-i18n",
 	"dependencies": {
 		"commander": "15.0.0",
-		"fluent-transpiler": "0.6.0"
+		"fluent-transpiler": "0.7.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.3",
