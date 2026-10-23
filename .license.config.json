@@ -18,12 +18,14 @@
 		".license.template",
 		"stryker.config.*",
 		"**/.gitignore",
+		"**/.npmrc",
 		"**/*.fuzz.js",
-		"**/*.perf.js",
+		"**/*.bench.js",
 		"**/*.test.js",
 		"test/*",
 		"**/*.md",
 		"**/*.yml",
+		"**/*.yaml",
 		"bin/*",
 		".DS_Store"
 	]
