@@ -14,11 +14,17 @@ jobs:
   dco:
     name: Tests (dco)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed # v2.22.0
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
         with:
-          egress-policy: audit
+          egress-policy: block
+          disable-sudo: true
           disable-telemetry: true
+          allowed-endpoints: >
+            api.github.com:443
+      # allowed-endpoints: >
+      #   api.github.com:443
       - name: Check for Developer Certificate of Origin (DCO) compliance
         uses: KineticCafe/actions-dco@5f160e3ee086af8fc0fb567b8add0937d074123e # v3.2.0
