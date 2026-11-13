@@ -47,33 +47,33 @@ npm i ajv-ftl-i18n
 ## Usage
 
 ```javascript
-import _ajv from 'ajv/dist/2020.js'
-import localize from 'ajv-ftl-i18n'
-import errorMessage from 'ajv-errors'
+import _ajv from "ajv/dist/2020.js";
+import localize from "ajv-ftl-i18n";
+import errorMessage from "ajv-errors";
 
-const Ajv = _ajv.default // esm workaround
+const Ajv = _ajv.default; // esm workaround
 
 const ajv = new Ajv({
-  allErrors: true,
-  messages: true // must be `true` for `errorMessages` support
-})
-errorMessage(ajv)
-const validate = ajv.compile(schema)
-const valid = validate(data)
+	allErrors: true,
+	messages: true, // must be `true` for `errorMessages` support
+});
+errorMessage(ajv);
+const validate = ajv.compile(schema);
+const valid = validate(data);
 
 if (!valid) {
-  localize.fr(validate.errors)
-  // string with all errors and data paths
-  console.log(ajv.errorsText(validate.errors, { separator: '\n' }))
+	localize.fr(validate.errors);
+	// string with all errors and data paths
+	console.log(ajv.errorsText(validate.errors, { separator: "\n" }));
 }
 ```
 
 Only need one locale? Import it directly to keep bundles small:
 
 ```javascript
-import fr from 'ajv-ftl-i18n/locale/fr.js'
+import fr from "ajv-ftl-i18n/locale/fr.js";
 
-fr(validate.errors)
+fr(validate.errors);
 ```
 
 ## Transpile
@@ -100,12 +100,12 @@ Options:
 ### NodeJS
 
 ```javascript
-import { readFile, writeFile } from 'node:fs/promises'
-import { transpile } from 'ajv-ftl-i18n'
+import { readFile, writeFile } from "node:fs/promises";
+import { transpile } from "ajv-ftl-i18n";
 
-const ftl = await readFile('./path/to/en.ftl', { encoding: 'utf8' })
-const js = transpile(ftl, { locale: 'en-CA' })
-await writeFile('./path/to/en.mjs', js, 'utf8')
+const ftl = await readFile("./path/to/en.ftl", { encoding: "utf8" });
+const js = transpile(ftl, { locale: "en-CA" });
+await writeFile("./path/to/en.mjs", js, "utf8");
 ```
 
 ## errorMessage
@@ -129,18 +129,18 @@ dimensions = The dimensions are invalid
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "height": {
-      "type": "number",
-      "minimum": 4
-    },
-    "width": {
-      "type": "number",
-      "minimum": 4
-    }
-  },
-  "errorMessage": "dimensions"
+	"type": "object",
+	"properties": {
+		"height": {
+			"type": "number",
+			"minimum": 4
+		},
+		"width": {
+			"type": "number",
+			"minimum": 4
+		}
+	},
+	"errorMessage": "dimensions"
 }
 ```
 
@@ -157,21 +157,21 @@ dimensions = The dimensions ({$h}x{$w}) are invalid
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "height": {
-      "type": "number",
-      "minimum": 4
-    },
-    "width": {
-      "type": "number",
-      "minimum": 4
-    }
-  },
-  "errorMessage": {
-    "properties": {
-      "height": "dimensions, h:${/height}, w:${/width}"
-    }
-  }
+	"type": "object",
+	"properties": {
+		"height": {
+			"type": "number",
+			"minimum": 4
+		},
+		"width": {
+			"type": "number",
+			"minimum": 4
+		}
+	},
+	"errorMessage": {
+		"properties": {
+			"height": "dimensions, h:${/height}, w:${/width}"
+		}
+	}
 }
 ```
