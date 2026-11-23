@@ -95,7 +95,7 @@
 	},
 	"homepage": "https://github.com/willfarrell/ajv-ftl-i18n",
 	"dependencies": {
-		"commander": "15.0.0",
+		"commander": "15.1.0",
 		"fluent-transpiler": "0.8.2"
 	},
 	"devDependencies": {
